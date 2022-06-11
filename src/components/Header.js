@@ -37,10 +37,10 @@ const Header = (props) => {
                   window.location.replace('/');
                }}
             >
-               MAGAZINE
+              쇼미더펫
             </h1>
             <nav>
-               <ButtonLogIn onClick={ClickLogin}>{btnState}</ButtonLogIn>
+               <ButtonLogIn onClick={ClickLogin}>Login</ButtonLogIn>
             </nav>
          </header>
       </>
@@ -48,16 +48,17 @@ const Header = (props) => {
 };
 const ButtonLogIn = styled.button`
    width: 67px;
-   height: 27px;
+   height: 30px;
    float: right;
    margin: 20px 10px;
    padding: 5px;
    align-items: center;
    justify-content: center;
-   background-color: transparent;
-   border: 1px solid #61dafb;
+   color: #fff;
+   background-color: #ea9cc3;
+   border: 1px solid #ea9cc3;
    border-radius: 5px;
-   color: #61dafb;
+
    @keyframes push {
       50% {
          transform: scale(0.85);
