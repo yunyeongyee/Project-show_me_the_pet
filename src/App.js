@@ -8,11 +8,9 @@ import './App.css';
 function App() {
    return (
       <div className="App">
-
          <Routes>
             <Route path="/PostList" element={<PostList />} />
             <Route path="/AddPost" element={<AddPost />} />
-            <Route />
          </Routes>
       </div>
    );
