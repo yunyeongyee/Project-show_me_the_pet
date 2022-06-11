@@ -2,8 +2,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 /*COMPONENTS*/
 /*CSS*/
+import './PostList.css';
 import AppBar from '@mui/material/AppBar';
-import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -20,7 +20,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function PostList() {
    return (
-      <Typography variant="body2" color="text.secondary" align="center">
+      <Typography variant="body2"  align="center">
          {'Copyright © '}
          <Link color="inherit" href="https://mui.com/">
             Your Website
@@ -40,17 +40,13 @@ export default function Album() {
       <ThemeProvider theme={theme}>
          <CssBaseline />
          <AppBar position="relative">
-            <Toolbar>
-               <Typography variant="h6" color="inherit" noWrap>
-                  쇼미더펫
+            <Toolbar className="Toolbar">
+               <Typography className="Typography" noWrap>
+                  <h2>쇼미더펫</h2>
                </Typography>
-               <Button
-                  variant="outlined"
-                  size="small"
-                  style={{ border: '1px solid #fff', color: '#fff' }}
-               >
-                  로그아웃
-               </Button>
+               <button className="Button">
+                  <h4>로그아웃</h4>
+               </button>
             </Toolbar>
          </AppBar>
          <main>
@@ -67,18 +63,12 @@ export default function Album() {
                      component="h1"
                      variant="h2"
                      align="center"
-                     color="text.primary"
                      gutterBottom
                   >
                      Album layout
                   </Typography>
 
-                  <Typography
-                     variant="h5"
-                     align="center"
-                     color="text.secondary"
-                     paragraph
-                  >
+                  <Typography variant="h5" align="center" paragraph>
                      Something short and leading about the collection below—its
                      contents, the creator, etc. Make it short and sweet, but
                      not too short so folks don&apos;t simply skip over it
@@ -105,7 +95,6 @@ export default function Album() {
                               flexDirection: 'column',
                            }}
                         >
-                          
                            <CardMedia
                               component="img"
                               image="https://source.unsplash.com/random"
