@@ -1,6 +1,6 @@
 import * as React from 'react';
 /*COMPONENTS*/
-import HeaderLogin from './HeaderLogin';
+import Header from './Header';
 import UploadBtn from './UploadBtn';
 import styled from 'styled-components';
 const PostList = () => {
@@ -8,7 +8,7 @@ const PostList = () => {
    // const theme = createTheme();
    return (
       <>
-         <HeaderLogin />
+         <Header />
          <Container>
             {DataList.map((data, index) => {
                console.log(data);

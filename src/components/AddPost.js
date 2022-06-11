@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 /*COMPONENTS*/
-import HeaderLogin from './HeaderLogin';
+import Header from './Header';
 const AddPost = () => {
       const navigate = useNavigate();
       const title = React.useRef(null);
@@ -13,7 +13,7 @@ const AddPost = () => {
       const [imageSrc, setImageSrc] = useState('');
    return (
       <>
-         <HeaderLogin />
+         <Header />
          <Container>
             <Card>
                <Form>
