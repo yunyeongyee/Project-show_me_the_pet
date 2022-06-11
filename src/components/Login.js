@@ -3,6 +3,17 @@ import styled from 'styled-components';
 
 const Login = () => {
 
+  const userid_ref = React.useRef(null);
+  const password_ref = React.useRef(null);
+
+  const loginDB = () => {
+    const login_list = {
+        userid : userid_ref.current.value,
+        password : password_ref.current.value,
+      }
+      console.log(login_list);
+      }
+
   return (
     <>
     <div>
@@ -11,19 +22,19 @@ const Login = () => {
         <Login_title>로그인</Login_title>
         <label>
           <p>아이디(이메일)</p>
-          <input type="email" />
+          <input type="email" ref={userid_ref} />
         </label>
 
         
         <label>
           <p>비밀번호</p>
-          <input type="email" />
+          <input type="password" ref={password_ref}/>
         </label>
         <br/>
         <br/>
         <Buttons>
         <button>취소</button>
-        <button>로그인</button>
+        <button onClick={loginDB}>로그인</button>
         </Buttons>
       </Login_wrap>
     </div>
