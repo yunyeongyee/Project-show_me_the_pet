@@ -11,11 +11,6 @@ const AddPost = () => {
       const content = React.useRef(null);
       const file_link = React.useRef(null);
       const [imageSrc, setImageSrc] = useState('');
-<<<<<<< HEAD
-=======
-
-       
->>>>>>> 10049ac25aabdff9ef1383635b6e1e44144844d4
    return (
       <>
       <HeaderLogin />
@@ -158,10 +153,6 @@ const InputFile = styled.input`
    color: #282C34;
    border: none;
    border-bottom: 1px solid #282C34;
-<<<<<<< HEAD
-=======
-  
->>>>>>> 10049ac25aabdff9ef1383635b6e1e44144844d4
 `;
 const Label = styled.label`
    margin: 0 5px;
@@ -171,17 +162,9 @@ const Label = styled.label`
    color: white;
    cursor: pointer;
 `;
-<<<<<<< HEAD
 const Preview = styled.div`
 width: 300px;
 `;
-=======
-
-const Preview = styled.div`
-width: 300px;
-`;
-
->>>>>>> 10049ac25aabdff9ef1383635b6e1e44144844d4
 const Textarea = styled.textarea`
    position: relative;
    width: 75%;

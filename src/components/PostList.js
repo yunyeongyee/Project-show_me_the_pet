@@ -3,10 +3,6 @@ import * as React from 'react';
 import HeaderLogin from './HeaderLogin';
 import UploadBtn from './UploadBtn';
 import styled from 'styled-components';
-<<<<<<< HEAD
-=======
-
->>>>>>> 10049ac25aabdff9ef1383635b6e1e44144844d4
 const PostList = () => {
    const DataList = [1, 2, 3, 4, 5];
    // const theme = createTheme();
@@ -68,10 +64,6 @@ const Card = styled.div`
       0 8px 16px -8px hsla(0, 0%, 0%, 0.3),
       0 -6px 16px -6px hsla(0, 0%, 0%, 0.03);
 `;
-<<<<<<< HEAD
-=======
-
->>>>>>> 10049ac25aabdff9ef1383635b6e1e44144844d4
  const Form = styled.div`
    display: flex;
    flex-direction: column;
@@ -79,12 +71,10 @@ const Card = styled.div`
    position: relative;
    left: 27px;
 `;
-
 const Title = styled.h2`
    position: relative;
    right: 20px;
 `;
-
 const Time = styled.p`
    font-size: 15px;
    font-weight: 300;
@@ -93,10 +83,6 @@ const Time = styled.p`
    right: 27px;
    text-align: right;
 `;
-<<<<<<< HEAD
-=======
-
->>>>>>> 10049ac25aabdff9ef1383635b6e1e44144844d4
 const Img = styled.img`
    max-width: 550px;
    position: relative;
@@ -104,10 +90,6 @@ const Img = styled.img`
    justify-content: center;
    align-items: center;
 `;
-<<<<<<< HEAD
-=======
-
->>>>>>> 10049ac25aabdff9ef1383635b6e1e44144844d4
 const WhoPosted = styled.p`
    position: relative;
    right: 10px;
@@ -115,25 +97,18 @@ const WhoPosted = styled.p`
    text-align: right;
    margin: 20px;
 `;
-<<<<<<< HEAD
-=======
-
->>>>>>> 10049ac25aabdff9ef1383635b6e1e44144844d4
 const Content = styled.p`
    margin: 5px auto;
    position: relative;
    right: 25px;
 `;
-
 const ButtonBox = styled.div`
    text-align: right;
 `;
-
 const Button = styled.button`
     text-align: right;
     margin: 3px;
     border: 1px solid transparent;
     border-radius: 5px;
 `;
-
 export default PostList;

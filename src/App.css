@@ -3,33 +3,17 @@
 *{
   font-family: 'Noto Sans KR', sans-serif;
 }
-<<<<<<< HEAD
 h4 {
   font-weight: 400;
 }
-=======
-
-h4 {
-  font-weight: 400;
-}
-
->>>>>>> 10049ac25aabdff9ef1383635b6e1e44144844d4
 .Footer{
   height: 50px;
   width: 100%;
 }
-<<<<<<< HEAD
 .AddBtn {
   display: block;
   position: fixed;
   bottom: 0;
-=======
-
-.AddBtn {
-  display: block;
-  position: fixed;
-  bottom: 0; 
->>>>>>> 10049ac25aabdff9ef1383635b6e1e44144844d4
   right: 0;
   margin: 7px 20px;
   border: 1px solid transparent;
