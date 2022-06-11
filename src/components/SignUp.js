@@ -1,8 +1,14 @@
-import React from "react";
+import React from 'react';
 
 const SignUp = () => {
 
-  return (expect);
+  return (
+    <>
+    <div>
+      <h1>SignUp 컴포넌트 페이지</h1>
+    </div>
+    </>
+  )
 }
 
-export default SignUp();
+export default SignUp;
