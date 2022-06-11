@@ -1,6 +1,5 @@
-/* HeaderLogin.css */
-
-/*#ea9cc3 #e0e0e0*/
+/*HeaderLogin.css___________ */
+/* #ea9cc3 #e0e0e0 */
 
 .Toolbar {
     display: flex;
@@ -10,10 +9,13 @@
 .Typography {
     color: #000;
 }
-.Button {
+.BtnLogout {
     left: 10px;
     width: 70px;
     height: 30px;
     border: 1px solid transparent;
     border-radius: 5px;
+    
 }
+
+/*HeaderLogout.css___________ */

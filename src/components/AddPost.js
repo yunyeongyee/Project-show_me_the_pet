@@ -1,22 +1,29 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+
+/*COMPONENTS*/
+import HeaderLogin from './HeaderLogin';
 const AddPost = () => {
       const navigate = useNavigate();
-       const title = React.useRef(null);
-       const content = React.useRef(null);
-       const date = React.useRef(null);
-       const file_link = React.useRef(null);
-       const [imageSrc, setImageSrc] = useState('');
+      const title = React.useRef(null);
+      const name = React.useRef(null);
+      const date = React.useRef(null);
+      const content = React.useRef(null);
+      const file_link = React.useRef(null);
+      const [imageSrc, setImageSrc] = useState('');
        
    return (
       <>
+      <HeaderLogin />
          <Container>
             <Card>
                <Form>
                   <ButtonUpload>Upload</ButtonUpload>
                   <Title>Title</Title>
                   <Input ref={title} type="text" />
+                  <Title>Name</Title>
+                  <Input ref={name} type="text" />
                   <SubTitle>Date</SubTitle>
                   <Input ref={date} type="date" />
                   <SubTitle>Choose Image</SubTitle>
@@ -50,18 +57,21 @@ const Container = styled.div`
    padding: 20px auto;
 `;
 const Card = styled.div`
-   position: relative;
-   width: 300px;
-   max-height: 600px;
-   margin: auto;
-   background: #e0e0e0;
+   max-width: 350px;
+   width: 95%;
+   padding: 1em;
+   margin: 1em;
+   border: 1px solid #transparent;
    border-radius: 5px;
-   overflow: hidden;
+   background: transparent;
+   box-shadow: 0 13px 27px -5px hsla(240, 30.1%, 28%, 0.25),
+      0 8px 16px -8px hsla(0, 0%, 0%, 0.3),
+      0 -6px 16px -6px hsla(0, 0%, 0%, 0.03);
+   transition: all ease 200ms;
    &:hover,
    &:focus,
    &:active {
       cursor: pointer;
-      border: 1px solid #ea9cc3;
    }
 `;
 const Form = styled.div`
@@ -72,8 +82,9 @@ const ButtonUpload = styled.button`
    display: flex;
    flex-direction: column;
    position: relative;
-   left: 210px;
-   bottom: 10px;
+   left: 10px;
+   bottom: 30px;
+   float: right;
    width: 65px;
    height: 27px;
    margin: 5px 10px;
@@ -135,7 +146,7 @@ const Input = styled.input`
    }
 `;
 const InputFile = styled.input`
-   input[type='file'] {
+   input[type='file'] label {
       display: none;
       max-width: 100px;
       background-color: whitesmoke;
@@ -179,11 +190,14 @@ const InputFile = styled.input`
       }
    }
 `;
-const Preview = styled.div``;
+const Preview = styled.div`
+width: 300px;
+
+`;
 const Textarea = styled.textarea`
    position: relative;
-   width: 80%;
-   height: 60px;
+   width: 75%;
+   height: 100px;
    padding: 10px;
    overflow-x: hidden;
    overflow-y: auto;
