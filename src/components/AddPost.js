@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-<<<<<<< HEAD
-=======
-
->>>>>>> post
 /*COMPONENTS*/
 import HeaderLogin from './HeaderLogin';
 const AddPost = () => {
@@ -15,30 +11,21 @@ const AddPost = () => {
       const content = React.useRef(null);
       const file_link = React.useRef(null);
       const [imageSrc, setImageSrc] = useState('');
-<<<<<<< HEAD
-   return (
-      <>
-         <HeaderLogin />
-=======
+
        
    return (
       <>
       <HeaderLogin />
->>>>>>> post
          <Container>
             <Card>
                <Form>
                   <ButtonUpload>Upload</ButtonUpload>
                   <Title>Title</Title>
                   <Input ref={title} type="text" />
-<<<<<<< HEAD
-                  <br />
-=======
                   <Title>Name</Title>
                   <Input ref={name} type="text" />
                   <SubTitle>Date</SubTitle>
                   <Input ref={date} type="date" />
->>>>>>> post
                   <SubTitle>Choose Image</SubTitle>
                   <Label className="input-file-button" for="input-file">
                      <InputFile ref={file_link} type="file" id="input-file" />
@@ -163,16 +150,12 @@ const Input = styled.input`
    }
 `;
 const InputFile = styled.input`
-<<<<<<< HEAD
-=======
-   input[type='file'] label {
->>>>>>> post
-      display: none;
-      max-width: 100px;
-      background-color: whitesmoke;
-      color: #282C34;
-      border: none;
-      border-bottom: 1px solid #282C34;
+   display: none;
+   max-width: 100px;
+   background-color: whitesmoke;
+   color: #282C34;
+   border: none;
+   border-bottom: 1px solid #282C34;
   
 `;
 
@@ -184,16 +167,11 @@ const Label = styled.label`
    color: white;
    cursor: pointer;
 `;
-const Preview = styled.div`
-width: 300px;
-`;
-<<<<<<< HEAD
-=======
-const Preview = styled.div`
-width: 300px;
 
+const Preview = styled.div`
+width: 300px;
 `;
->>>>>>> post
+
 const Textarea = styled.textarea`
    position: relative;
    width: 75%;
