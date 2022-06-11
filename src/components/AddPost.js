@@ -13,19 +13,20 @@ const AddPost = () => {
       const [imageSrc, setImageSrc] = useState('');
    return (
       <>
-      <HeaderLogin />
+         <HeaderLogin />
          <Container>
             <Card>
                <Form>
                   <ButtonUpload>Upload</ButtonUpload>
                   <Title>Title</Title>
                   <Input ref={title} type="text" />
-                  <Title>Name</Title>
-                  <Input ref={name} type="text" />
-                  <SubTitle>Date</SubTitle>
-                  <Input ref={date} type="date" />
+                  <br />
                   <SubTitle>Choose Image</SubTitle>
-                  <InputFile ref={file_link} type="file" />
+                  <Label className="input-file-button" for="input-file">
+                     <InputFile ref={file_link} type="file" id="input-file" />
+                     업로드
+                  </Label>
+
                   <Preview>
                      {imageSrc && (
                         <img
@@ -114,11 +115,13 @@ const Title = styled.p`
    margin: 3px auto;
    line-height: 5px;
 `;
-const SubTitle = styled.p`
+const DateTitle = styled.p`
+   line-height: 5px;
+`;
+const SubTitle = styled.span`
    line-height: 5px;
 `;
 const SubTitle2 = styled.p`
-   position: relative;
    line-height: 5px;
 `;
 const Input = styled.input`
@@ -142,48 +145,22 @@ const Input = styled.input`
    }
 `;
 const InputFile = styled.input`
-   input[type='file'] label {
       display: none;
       max-width: 100px;
       background-color: whitesmoke;
       color: #282C34;
       border: none;
       border-bottom: 1px solid #282C34;
-      input#file-upload-button {
-         display: flex;
-         flex-direction: column;
-         position: relative;
-         top: 7px;
-         left: 200px;
-         width: 65px;
-         height: 27px;
-         margin: 5px 10px;
-         padding: 5px;
-         align-items: center;
-         justify-content: center;
-         background-color: transparent;
-         border: 1px solid #EA9CC3;
-         border-radius: 5px;
-         color: #EA9CC3;
-          @keyframes push {
-            50% {
-               transform: scale(0.85);
-            }
-            100% {
-               transform: scale(1);
-            }
-         }
-         &:hover,
-         &:active,
-         &:focus {
-            cursor: pointer;
-            animation-name: push;
-            animation-duration: 0.4s;
-            animation-timing-function: linear;
-            animation-iteration-count: 1;
-         }
-      }
-   }
+  
+`;
+
+const Label = styled.label`
+   margin: 0 5px;
+   padding: 6px 10px;
+   background-color: #EA9CC3;
+   border-radius: 4px;
+   color: white;
+   cursor: pointer;
 `;
 const Preview = styled.div`
 width: 300px;
