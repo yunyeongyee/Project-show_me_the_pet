@@ -3,10 +3,7 @@ import * as React from 'react';
 import HeaderLogin from './HeaderLogin';
 import UploadBtn from './UploadBtn';
 import styled from 'styled-components';
-<<<<<<< HEAD
-=======
 
->>>>>>> post
 const PostList = () => {
    const DataList = [1, 2, 3, 4, 5];
    // const theme = createTheme();
@@ -67,24 +64,21 @@ const Card = styled.div`
    box-shadow: 0 13px 27px -5px hsla(240, 30.1%, 28%, 0.25),
       0 8px 16px -8px hsla(0, 0%, 0%, 0.3),
       0 -6px 16px -6px hsla(0, 0%, 0%, 0.03);
-<<<<<<< HEAD
-`;
-=======
-   transition: all ease 200ms;
 `;
 
->>>>>>> post
-const Form = styled.div`
+ const Form = styled.div`
    display: flex;
    flex-direction: column;
    justify-content: center;
    position: relative;
    left: 27px;
 `;
+
 const Title = styled.h2`
    position: relative;
    right: 20px;
 `;
+
 const Time = styled.p`
    font-size: 15px;
    font-weight: 300;
@@ -93,10 +87,7 @@ const Time = styled.p`
    right: 27px;
    text-align: right;
 `;
-<<<<<<< HEAD
-=======
 
->>>>>>> post
 const Img = styled.img`
    max-width: 550px;
    position: relative;
@@ -104,10 +95,7 @@ const Img = styled.img`
    justify-content: center;
    align-items: center;
 `;
-<<<<<<< HEAD
-=======
 
->>>>>>> post
 const WhoPosted = styled.p`
    position: relative;
    right: 10px;
@@ -115,22 +103,22 @@ const WhoPosted = styled.p`
    text-align: right;
    margin: 20px;
 `;
-<<<<<<< HEAD
-=======
 
->>>>>>> post
 const Content = styled.p`
    margin: 5px auto;
    position: relative;
    right: 25px;
 `;
+
 const ButtonBox = styled.div`
    text-align: right;
 `;
+
 const Button = styled.button`
     text-align: right;
     margin: 3px;
     border: 1px solid transparent;
     border-radius: 5px;
 `;
+
 export default PostList;
