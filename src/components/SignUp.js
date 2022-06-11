@@ -3,6 +3,21 @@ import styled from 'styled-components';
 
 const SignUp = () => {
 
+  const userid_ref = React.useRef(null);
+  const password_ref = React.useRef(null);
+  const confirmPassword_ref = React.useRef(null);
+  const name_ref = React.useRef(null);
+
+  const signupDB = () => {
+const signup_list = {
+  userid : userid_ref.current.value,
+    password : password_ref.current.value,
+    confirmPassword : confirmPassword_ref.current.value,
+    name : name_ref.current.value,
+  }
+  console.log(signup_list);
+  }
+
   return (
     <>
     <div>
@@ -11,21 +26,21 @@ const SignUp = () => {
         <SignUp_title>회원가입</SignUp_title>
         <label>
           <p>아이디(이메일)</p>
-          <input type="email" />
+          <input type="email" ref={userid_ref}/>
         </label>
         <button>중복확인</button>
         
         <label>
           <p>비밀번호</p>
-          <input type="email" />
+          <input type="password" ref={password_ref} />
         </label>
         <label>
           <p>비밀번호 확인</p>
-          <input type="email" />
+          <input type="password" ref={confirmPassword_ref}/>
         </label>
         <label>
           <p>닉네임</p>
-          <input type="email" />
+          <input type="text" ref={name_ref}/>
         </label>
 
         
@@ -34,7 +49,7 @@ const SignUp = () => {
         <br/>
         <Buttons>
         <button>취소</button>
-        <button>가입하기</button>
+        <button onClick={signupDB}>가입하기</button>
         </Buttons>
 
 
