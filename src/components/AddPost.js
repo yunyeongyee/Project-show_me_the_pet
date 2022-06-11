@@ -13,21 +13,18 @@ const AddPost = () => {
       const [imageSrc, setImageSrc] = useState('');
    return (
       <>
-      <HeaderLogin />
+         <HeaderLogin />
          <Container>
             <Card>
                <Form>
-                  <ButtonUpload>Upload</ButtonUpload>
+                  <ButtonUpload>업로드</ButtonUpload>
                   <Title>Title</Title>
                   <Input ref={title} type="text" />
-                  <Title>Name</Title>
-                  <Input ref={name} type="text" />
-                  <SubTitle>Date</SubTitle>
-                  <Input ref={date} type="date" />
+                  <br />
                   <SubTitle>Choose Image</SubTitle>
                   <Label className="input-file-button" for="input-file">
                      <InputFile ref={file_link} type="file" id="input-file" />
-                     업로드
+                     사진선택
                   </Label>
                   <Preview>
                      {imageSrc && (
@@ -38,6 +35,7 @@ const AddPost = () => {
                         />
                      )}
                   </Preview>
+                  <br />
                   <SubTitle2>Contents</SubTitle2>
                   <Textarea ref={content} type="text" />
                </Form>
@@ -83,7 +81,7 @@ const ButtonUpload = styled.button`
    flex-direction: column;
    position: relative;
    left: 10px;
-   bottom: 30px;
+   bottom: 25px;
    float: right;
    width: 65px;
    height: 27px;
@@ -91,10 +89,13 @@ const ButtonUpload = styled.button`
    padding: 5px;
    align-items: center;
    justify-content: center;
-   background-color: transparent;
-   border: 1px solid #EA9CC3;
-   border-radius: 5px;
-   color: #EA9CC3;
+   margin: 0 5px;
+   padding: 6px 10px;
+   background-color: #ea9cc3;
+   border: 1px solid #ea9cc3;
+   border-radius: 4px;
+   color: white;
+   cursor: pointer;
    @keyframes push {
       50% {
          transform: scale(0.85);
@@ -113,17 +114,17 @@ const ButtonUpload = styled.button`
       animation-iteration-count: 1;
    }
 `;
+
 const Title = styled.p`
    margin: 3px auto;
    line-height: 5px;
 `;
-const DateTitle = styled.p`
-   line-height: 5px;
-`;
+
 const SubTitle = styled.span`
    line-height: 5px;
 `;
-const SubTitle2 = styled.p`
+const SubTitle2 = styled.p` 
+   margin: 10px 0;
    line-height: 5px;
 `;
 const Input = styled.input`
@@ -148,19 +149,38 @@ const Input = styled.input`
 `;
 const InputFile = styled.input`
    display: none;
-   max-width: 100px;
+   width: 100px;
+   max-height:40px;
    background-color: whitesmoke;
-   color: #282C34;
+   color: #282c34;
    border: none;
-   border-bottom: 1px solid #282C34;
+   border-bottom: 1px solid #282c34;
 `;
 const Label = styled.label`
    margin: 0 5px;
-   padding: 6px 10px;
-   background-color: #EA9CC3;
-   border-radius: 4px;
+   padding: 2px 4px;
+   background-color: #ea9cc3;
+   border: 1px solid #ea9cc3;
+   border-radius: 5px;
    color: white;
    cursor: pointer;
+   @keyframes push {
+      50% {
+         transform: scale(0.85);
+      }
+      100% {
+         transform: scale(1);
+      }
+   }
+   &:hover,
+   &:active,
+   &:focus {
+      cursor: pointer;
+      animation-name: push;
+      animation-duration: 0.4s;
+      animation-timing-function: linear;
+      animation-iteration-count: 1;
+   }
 `;
 const Preview = styled.div`
 width: 300px;
@@ -168,7 +188,7 @@ width: 300px;
 const Textarea = styled.textarea`
    position: relative;
    width: 75%;
-   height: 100px;
+   height: 110px;
    padding: 10px;
    overflow-x: hidden;
    overflow-y: auto;
