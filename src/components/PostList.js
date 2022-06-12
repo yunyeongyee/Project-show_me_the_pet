@@ -13,6 +13,7 @@ const PostList = () => {
    // const theme = createTheme();  
    return (
       <>
+
          <Container>
             {DataList.map((data, index) => {
                console.log(data);
