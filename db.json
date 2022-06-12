@@ -8,13 +8,29 @@
       "img": "https://img.animalplanet.co.kr/news/2022/01/03/700/0h14776ytp31498s9t0c.jpg",
       "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     },
- {
+    {
       "id": 2,
       "boardId ": "test1",
       "nickname": "admin",
       "title": "데본렉스",
       "img": "https://search.pstatic.net/sunny/?src=http%3A%2F%2Fdcimg4.dcinside.co.kr%2Fviewimage.php%3Fid%3D3ea8de28fc%26no%3D29bcc427bd8177a16fb3dab004c86b6f9d6f040c019103ca10b325570264ff3dc54ad9fcdc9dde5298efae4165a38ac4eb49c5a82189478b72c681b819f09859c6c222b495&type=sc960_832",
       "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+    },
+    {
+      "boardId": "test1",
+      "nickname": "admin",
+      "title": "그레이하운드",
+      "img": "https://img.animalplanet.co.kr/news/2022/01/03/700/0h14776ytp31498s9t0c.jpg",
+      "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "id": 3
+    },
+    {
+      "boardId": "test1",
+      "nickname": "admin",
+      "title": "야용",
+      "img": "https://img.animalplanet.co.kr/news/2022/01/03/700/0h14776ytp31498s9t0c.jpg",
+      "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "id": 4
     }
   ]
 }
