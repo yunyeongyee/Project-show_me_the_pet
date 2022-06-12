@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 /*COMPONENTS*/
 import Header from './Header';
 const AddPost = () => {
@@ -11,6 +12,30 @@ const AddPost = () => {
       const content = React.useRef(null);
       const file_link = React.useRef(null);
       const [imageSrc, setImageSrc] = useState('');
+
+      let data = { 
+      boardId: "test1",
+      nickname: "admin",
+      title: "야용",
+      img: "https://img.animalplanet.co.kr/news/2022/01/03/700/0h14776ytp31498s9t0c.jpg",
+      content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry." };
+
+      React.useEffect(()=> { 
+       callSomethingaxios();
+      }, [])
+      
+      const callSomethingaxios = () => {
+               axios.get('http://localhost:5001/list').then((response) => {
+                  console.log(response);
+               });
+
+               axios.post('http://localhost:5001/list', data)
+                  .then((response) => {
+                     console.log(response);
+                  });
+
+      }
+
    return (
       <>
          <Header />
