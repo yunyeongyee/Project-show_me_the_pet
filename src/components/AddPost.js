@@ -126,6 +126,8 @@ const SubTitle = styled.span`
    line-height: 5px;
 `;
 const SubTitle2 = styled.p` 
+   position: relative;
+   top: 10px;
    margin: 10px 0;
    line-height: 5px;
 `;
@@ -191,20 +193,21 @@ width: 300px;
 `;
 const Textarea = styled.textarea`
    position: relative;
+   top: 10px;
    width: 75%;
    height: 110px;
    padding: 10px;
    overflow-x: hidden;
    overflow-y: auto;
    background-color: transparent;
-   border: solid 1px #282C34;
+   border: solid 1px #282c34;
    border-radius: 5px;
    resize: none;
    &:hover,
    &:focus,
    &:active {
       cursor: pointer;
-      border: 1px solid #EA9CC3;
+      border: 1px solid #ea9cc3;
    }
 `;
 export default AddPost;
