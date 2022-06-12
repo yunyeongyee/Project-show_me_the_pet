@@ -91,10 +91,10 @@ const ButtonUpload = styled.button`
    justify-content: center;
    margin: 0 5px;
    padding: 6px 10px;
-   background-color: #ea9cc3;
-   border: 1px solid #ea9cc3;
-   border-radius: 4px;
-   color: white;
+   color: #000;
+   background-color: #e0e0e0;
+   border: 1px solid #e0e0e0;
+   border-radius: 5px;
    cursor: pointer;
    @keyframes push {
       50% {
@@ -112,6 +112,8 @@ const ButtonUpload = styled.button`
       animation-duration: 0.4s;
       animation-timing-function: linear;
       animation-iteration-count: 1;
+      background-color: #ea9cc3;
+      border: 1px solid #ea9cc3;
    }
 `;
 
@@ -159,10 +161,10 @@ const InputFile = styled.input`
 const Label = styled.label`
    margin: 0 5px;
    padding: 2px 4px;
-   background-color: #ea9cc3;
-   border: 1px solid #ea9cc3;
+   color: #000;
+   background-color: #e0e0e0;
+   border: 1px solid #e0e0e0;
    border-radius: 5px;
-   color: white;
    cursor: pointer;
    @keyframes push {
       50% {
@@ -180,6 +182,8 @@ const Label = styled.label`
       animation-duration: 0.4s;
       animation-timing-function: linear;
       animation-iteration-count: 1;
+      background-color: #ea9cc3;
+      border: 1px solid #ea9cc3;
    }
 `;
 const Preview = styled.div`
