@@ -8,9 +8,20 @@ import {
 /*COMPONENTS*/
 import UploadBtn from './UploadBtn';
 import styled from 'styled-components';
+import axios from 'axios';
 const PostList = () => {
    const DataList = [1, 2, 3, 4, 5];
    // const theme = createTheme();  
+         // React.useEffect(() => {
+         //    callPostListAxios();
+         // }, []);
+
+         // const callPostListAxios = () => {
+         //    axios.get('http://localhost:5001/PostList').then((response) => {
+         //       console.log(response);
+         //    });
+
+         // };
    return (
       <>
 

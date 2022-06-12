@@ -7,34 +7,26 @@ import Header from './Header';
 const AddPost = () => {
       const navigate = useNavigate();
       const title = React.useRef(null);
-      const name = React.useRef(null);
-      const date = React.useRef(null);
       const content = React.useRef(null);
-      const file_link = React.useRef(null);
-      const [imageSrc, setImageSrc] = useState('');
+      const boardId = React.useRef(null);
+      // const img = React.useRef(null);
+      // const date = React.useRef(null);
+      // const file_link = React.useRef(null);
+      // const [imageSrc, setImageSrc] = useState('');
 
-      let data = { 
-      boardId: "test1",
-      nickname: "admin",
-      title: "야용",
-      img: "https://img.animalplanet.co.kr/news/2022/01/03/700/0h14776ytp31498s9t0c.jpg",
-      content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry." };
-
-      React.useEffect(()=> { 
-       callSomethingAxios();
-      }, [])
-      
       const callSomethingAxios = () => {
-               axios.get('http://localhost:5001/list').then((response) => {
-                  console.log(response);
-               });
-
-               axios.post('http://localhost:5001/list', data)
-                  .then((response) => {
-                     console.log(response);
-                  });
-
-      }
+         axios.post('http://localhost:5001/list', {
+               "title": title.current.value,
+               "content": content.current.value,
+            })
+            .then(function (response) {
+               alert('Add Post');
+               console.log(response);
+            })
+            .catch(function (error) {
+               console.log(error.response.data.errorMessage);
+            });
+      };
 
    return (
       <>
@@ -42,16 +34,18 @@ const AddPost = () => {
          <Container>
             <Card>
                <Form>
-                  <ButtonUpload>업로드</ButtonUpload>
+                  <ButtonUpload onClick={callSomethingAxios}>
+                     업로드
+                  </ButtonUpload>
                   <Title>Title</Title>
                   <Input ref={title} type="text" />
                   <br />
                   <SubTitle>Choose Image</SubTitle>
                   <Label className="input-file-button" for="input-file">
-                     <InputFile ref={file_link} type="file" id="input-file" />
+                     <InputFile  type="file" id="input-file" />
                      사진선택
                   </Label>
-                  <Preview>
+                  {/* <Preview>
                      {imageSrc && (
                         <img
                            src={imageSrc}
@@ -59,7 +53,7 @@ const AddPost = () => {
                            style={{ width: 100 }}
                         />
                      )}
-                  </Preview>
+                  </Preview> */}
                   <br />
                   <SubTitle2>Contents</SubTitle2>
                   <Textarea ref={content} type="text" />
