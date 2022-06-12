@@ -14,7 +14,7 @@ const AddPost = () => {
       // const file_link = React.useRef(null);
       // const [imageSrc, setImageSrc] = useState('');
 
-      const callSomethingAxios = () => {
+      const addPostAxios = () => {
          axios.post('http://localhost:5001/list', {
                "title": title.current.value,
                "content": content.current.value,
@@ -34,15 +34,13 @@ const AddPost = () => {
          <Container>
             <Card>
                <Form>
-                  <ButtonUpload onClick={callSomethingAxios}>
-                     업로드
-                  </ButtonUpload>
+                  <ButtonUpload onClick={addPostAxios}>업로드</ButtonUpload>
                   <Title>Title</Title>
                   <Input ref={title} type="text" />
                   <br />
                   <SubTitle>Choose Image</SubTitle>
                   <Label className="input-file-button" for="input-file">
-                     <InputFile  type="file" id="input-file" />
+                     <InputFile type="file" id="input-file" />
                      사진선택
                   </Label>
                   {/* <Preview>
