@@ -37,16 +37,17 @@ const Header = (props) => {
                   window.location.replace('/');
                }}
             >
-              쇼미더펫
+               쇼미더펫
             </h1>
             <nav>
-               <ButtonLogIn onClick={ClickLogin}>Login</ButtonLogIn>
+               <Button onClick={ClickLogin}>로그인</Button>
+               <Button>회원가입</Button>
             </nav>
          </header>
       </>
    );
 };
-const ButtonLogIn = styled.button`
+const Button = styled.button`
    width: 67px;
    height: 30px;
    float: right;
@@ -54,9 +55,9 @@ const ButtonLogIn = styled.button`
    padding: 5px;
    align-items: center;
    justify-content: center;
-   color: #fff;
-   background-color: #ea9cc3;
-   border: 1px solid #ea9cc3;
+   color: #000;
+   background-color: #e0e0e0;
+   border: 1px solid #e0e0e0;
    border-radius: 5px;
 
    @keyframes push {
@@ -75,6 +76,8 @@ const ButtonLogIn = styled.button`
       animation-duration: 0.4s;
       animation-timing-function: linear;
       animation-iteration-count: 1;
+      background-color: #ea9cc3;
+      border: 1px solid #ea9cc3;
    }
 `;
 export default Header;
