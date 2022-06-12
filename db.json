@@ -31,6 +31,14 @@
       "img": "https://img.animalplanet.co.kr/news/2022/01/03/700/0h14776ytp31498s9t0c.jpg",
       "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "id": 4
+    },
+    {
+      "boardId": "test1",
+      "nickname": "admin",
+      "title": "야용",
+      "img": "https://img.animalplanet.co.kr/news/2022/01/03/700/0h14776ytp31498s9t0c.jpg",
+      "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "id": 5
     }
   ]
 }

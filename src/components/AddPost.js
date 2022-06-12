@@ -21,10 +21,10 @@ const AddPost = () => {
       content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry." };
 
       React.useEffect(()=> { 
-       callSomethingaxios();
+       callSomethingAxios();
       }, [])
       
-      const callSomethingaxios = () => {
+      const callSomethingAxios = () => {
                axios.get('http://localhost:5001/list').then((response) => {
                   console.log(response);
                });
