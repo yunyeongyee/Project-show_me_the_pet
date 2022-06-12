@@ -1,11 +1,17 @@
 import * as React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+   faTrash,
+   faHeart,
+   faPenToSquare,
+} from '@fortawesome/free-solid-svg-icons';
 /*COMPONENTS*/
 import Header from './Header';
 import UploadBtn from './UploadBtn';
 import styled from 'styled-components';
 const PostList = () => {
    const DataList = [1, 2, 3, 4, 5];
-   // const theme = createTheme();
+   // const theme = createTheme();  
    return (
       <>
          <Header />
@@ -15,9 +21,12 @@ const PostList = () => {
                return (
                   <Card key={index}>
                      <ButtonBox>
-                        <Button>like</Button>
-                        <Button>edit</Button>
-                        <Button>delete</Button>
+                        <FontAwesomeIcon icon="faRegular faPenToSquare" />
+                        <FontAwesomeIcon icon="faRegular faHeart" />
+                        <FontAwesomeIcon
+                           icon="faRegular faTrash"
+                           className="fa-lg"
+                        />
                      </ButtonBox>
                      <Form>
                         <Title>Lorem Ipsum</Title>
