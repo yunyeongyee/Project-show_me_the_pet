@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const SignUp = () => {
 
@@ -8,15 +9,33 @@ const SignUp = () => {
   const confirmPassword_ref = React.useRef(null);
   const name_ref = React.useRef(null);
 
+
+// const signup_list = {
+//     userid : userid_ref.current.value,
+//     password : password_ref.current.value,
+//     confirmPassword : confirmPassword_ref.current.value,
+//     name : name_ref.current.value,
+//   }
+
+  const signup_list = {
+    userid : "testid2022@test.com",
+    password : "test33",
+    confirmPassword : "test33",
+    name : "test입니다",
+  }
+
+
   const signupDB = () => {
-const signup_list = {
-    userid : userid_ref.current.value,
-    password : password_ref.current.value,
-    confirmPassword : confirmPassword_ref.current.value,
-    name : name_ref.current.value,
-  }
-  console.log(signup_list);
-  }
+    axios.post("http://localhost:5001/login", signup_list).then(response => {
+      const success = response.data[0].success
+      const msg = response.data[0].msg
+     if ( success === true) {
+      alert(msg);
+     } else if (success === false) {
+      alert("회원 가입에 실패.");
+     }
+  });
+  } 
 
   return (
     <>
