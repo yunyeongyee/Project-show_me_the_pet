@@ -51,7 +51,7 @@ const Container = styled.div`
    align-items: center;
    justify-content: center;
    position: relative;
-   top: 0px;
+   top: 50%;
    margin: 20px auto;
    padding: 20px auto;
 `;
