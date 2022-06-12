@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 /*COMPONENTS*/
-import Header from './Header';
+import Header from './components/Header';
 import PostList from './components/PostList';
 import AddPost from './components/AddPost';
 import SignUp from './components/SignUp';
