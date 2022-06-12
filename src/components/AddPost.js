@@ -161,7 +161,7 @@ const InputFile = styled.input`
    border-bottom: 1px solid #282c34;
 `;
 const Label = styled.label`
-   margin: 0 5px;
+   margin: auto 5px;
    padding: 2px 4px;
    color: #000;
    background-color: #e0e0e0;
