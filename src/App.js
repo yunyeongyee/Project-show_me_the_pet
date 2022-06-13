@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import PostList from './components/PostList';
 import AddPost from './components/AddPost';
+import DeletePost from './components/DeletePost';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 /*CSS*/
@@ -18,6 +19,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/PostList" element={<PostList />} />
             <Route path="/AddPost" element={<AddPost />} />
+            <Route path="/DeletePost" element={<DeletePost />} />
          </Routes>
       </div>
    );
