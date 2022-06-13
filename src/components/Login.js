@@ -8,30 +8,38 @@ const Login = () => {
   const password_ref = React.useRef(null);
 
 
-    // const login_list = {
-    //     userid : userid_ref.current.value,
-    //     password : password_ref.current.value,
-    //   }
-
-    const login_list = {
-          userid : "test00@test.com",
-          password : "testtest",
-        }
-    
-   
-
   const loginDB = () => {
-    axios.post("http://localhost:5001/login", login_list).then(response => {
-      const success = response.data[0].success
-      const name = response.data[0].name
-      const msg = response.data[0].msg
+    const login_list = {
+      "userId" : userid_ref.current.value,
+      "password" : password_ref.current.value
+    }
+    axios.post("http://15.164.164.17:80/api/login", {
+      "userId": userid_ref.current.value,
+      "password": password_ref.current.value
+    }).then(response => {
+      const success = response.data.success
+      const name = response.data.name
+      const msg = response.data.msg
      if ( success === true) {
       alert(name+" 님, 환영합니다!");
      } else if (success === false) {
       alert(msg);
      }
-  });
+  })
   } 
+
+  // const loginDB = () => {
+  //   const login_list = {
+  //     "userId" : userid_ref.current.value,
+  //     "password" : password_ref.current.value
+  //   }
+
+  //   axios.post("http://15.164.164.17/api/login", login_list).then(response => {
+  //   console.log(response);
+  //   console.log(login_list);
+  //   console.log("response.data =>",response.data);
+  // })
+  // } 
 
 
   return (
