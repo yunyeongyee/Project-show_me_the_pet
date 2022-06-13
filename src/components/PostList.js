@@ -14,6 +14,7 @@ import axios from 'axios';
 
 
 const PostList = () => {
+
    const title = useState();
    const content = useState();
    const [list, setList] = useState([]);
@@ -28,12 +29,11 @@ const PostList = () => {
 
    
    const getPostListAxios = () => {
-      axios
-      .get('http://localhost:5001/list').then((response) => {
-      setList([...response.data]);
+      axios.get('http://15.164.164.17/api/boards').then((response) => {
+         setList([...response.data.boards]);
 
-      console.log('response?', list);
-   })
+         console.log('response?', response.data.boards);
+      });
    // .then(function (response) {
    //    alert('Add Post');
    //    console.log(response);
@@ -50,7 +50,7 @@ const PostList = () => {
             {list.map((data, index) => {
                return (
                   <Card key={index}>
-                  
+                     {/* <button onClick={getPostListAxios}>response</button> */}
                      {/* <ButtonBox>
                         <FontAwesomeIcon icon="faRegular faPenToSquare" />
                         <FontAwesomeIcon icon="faRegular faHeart" />

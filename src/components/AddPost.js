@@ -8,10 +8,10 @@ const AddPost = () => {
    const navigate = useNavigate();
    const title = React.useRef(null);
    const content = React.useRef(null);
-   const boardId = React.useRef(null);
+      const [imageSrc, setImageSrc] = useState('');
    // const img = React.useRef(null);
    // const file_link = React.useRef(null);
-   // const [imageSrc, setImageSrc] = useState('');
+
    // const auth = getAuth();
    // const user = auth.currentUser;
    // const user_list = useSelector((state) => state.users.list);
@@ -29,13 +29,14 @@ const AddPost = () => {
 
    const addPostAxios = () => {
       axios
-         .post('http://localhost:5001/list', {
+         .post('http://15.164.164.17/api/boards', {
             title: title.current?.value,
             content: content.current.value,
             // timePosted: timePosted.current.value,
          })
          .then(function (response) {
             alert('Add Post');
+            navigate('/PostList');
             console.log(response);
          })
          .catch(function (error) {
@@ -61,11 +62,11 @@ const AddPost = () => {
                   <br />
 
                   <SubTitle>Choose Image</SubTitle>
-                  <Label className="input-file-button" for="input-file">
+                  <Label className="input-file-button" htmlFor="input-file">
                      <InputFile type="file" id="input-file" />
                      사진선택
                   </Label>
-                  {/* <Preview>
+                  <Preview>
                      {imageSrc && (
                         <img
                            src={imageSrc}
@@ -73,7 +74,7 @@ const AddPost = () => {
                            style={{ width: 100 }}
                         />
                      )}
-                  </Preview> */}
+                  </Preview>
                   <br />
                   <SubTitle2>Contents</SubTitle2>
                   <Textarea
