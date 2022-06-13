@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-function DeletePost(post_num) {
+const DeletePost = (post_num) => {
     if (window.confirm('해당 게시글을 삭제 하시겠습니까?')) {
        axios.delete({
           type: 'POST',
@@ -18,6 +18,11 @@ function DeletePost(post_num) {
     } else {
        return;
     }
+    return (
+       <>
+          <h1>DELETEPOST</h1>
+       </>
+    );
 }
 
 export default DeletePost;

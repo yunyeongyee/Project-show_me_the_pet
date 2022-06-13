@@ -50,23 +50,19 @@ const AddPost = () => {
             <Card>
                <Form>
                   <ButtonUpload onClick={addPostAxios}>업로드</ButtonUpload>
-                     <TimePosted>{timePosted}</TimePosted>
+                  <TimePosted>{timePosted}</TimePosted>
                   <br />
                   <Title>Title</Title>
                   <Input
                      ref={title}
                      type="text"
-                     placeholder="제목을 입력해주세요."
+                     placeholder="제목을 입력하세요."
                   />
                   <br />
 
                   <SubTitle>Choose Image</SubTitle>
                   <Label className="input-file-button" for="input-file">
-                     <InputFile
-                        type="file"
-                        id="input-file"
-                        placeholder="내용을 입력해주세요."
-                     />
+                     <InputFile type="file" id="input-file" />
                      사진선택
                   </Label>
                   {/* <Preview>
@@ -80,7 +76,11 @@ const AddPost = () => {
                   </Preview> */}
                   <br />
                   <SubTitle2>Contents</SubTitle2>
-                  <Textarea ref={content} type="text" />
+                  <Textarea
+                     ref={content}
+                     type="text"
+                     placeholder="내용을 입력하세요."
+                  />
                </Form>
             </Card>
          </Container>
