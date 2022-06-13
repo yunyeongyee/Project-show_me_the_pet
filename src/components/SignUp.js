@@ -10,32 +10,77 @@ const SignUp = () => {
   const name_ref = React.useRef(null);
 
 
-// const signup_list = {
-//     userid : userid_ref.current.value,
-//     password : password_ref.current.value,
-//     confirmPassword : confirmPassword_ref.current.value,
-//     name : name_ref.current.value,
-//   }
 
-  const signup_list = {
-    userid : "testid2022@test.com",
-    password : "test33",
-    confirmPassword : "test33",
-    name : "test입니다",
-  }
+
+  // const signup_list = {
+  //   "userId" : "testid2022@test.com",
+  //   "password" : "test33",
+  //   "confirmPassword" : "test33",
+  //   "name" : "테스트다"
+  // }
+
+
+
+
 
 
   const signupDB = () => {
-    axios.post("http://localhost:5001/login", signup_list).then(response => {
-      const success = response.data[0].success
-      const msg = response.data[0].msg
-     if ( success === true) {
+
+    const signup_list = {
+      userid : userid_ref.current.value,
+      password : password_ref.current.value,
+      confirmPassword : confirmPassword_ref.current.value,
+      name : name_ref.current.value,
+    }
+
+    axios.post("http://15.164.164.17/api/users", signup_list).then(response => {
+      const success = response.data.success
+      const msg = response.data.msg
+     if (success === true) {
       alert(msg);
      } else if (success === false) {
       alert("회원 가입에 실패.");
      }
   });
   } 
+
+
+  
+ 
+
+  const checkID = () => {
+    const check_id = {
+      "userId" : userid_ref.current.value
+    }
+    axios.post("http://15.164.164.17/api/check/userId", check_id).then(response => {
+      const success = response.data.success
+      const msg = response.data.msg
+      const errorMessage = response.data.errorMessage
+
+      if (success === true) {
+        alert("사용 가능");
+       } else if (success === false) {
+        alert(msg);
+       } 
+    })
+  }
+
+  const checkName = () => {
+    const check_name = {
+      "name" : name_ref.current.value
+    }
+    axios.post("http://15.164.164.17/api/check/name", check_name).then(response => {
+      const success = response.data.success
+      const msg = response.data.msg
+      const errorMessage = response.data.errorMessage
+
+      if ( success === true) {
+        alert(msg);
+       } else if (success === false) {
+        alert(msg);
+       } 
+    })
+  }
 
   return (
     <>
@@ -47,7 +92,7 @@ const SignUp = () => {
           <p>아이디(이메일)</p>
           <input type="email" ref={userid_ref}/>
         </label>
-        <button>중복확인</button>
+        <button onClick={checkID}>중복확인</button>
         
         <label>
           <p>비밀번호</p>
@@ -63,7 +108,7 @@ const SignUp = () => {
         </label>
 
         
-        <button>중복확인</button>
+        <button onClick={checkName}>중복확인</button>
         <br/>
         <br/>
         <Buttons>
