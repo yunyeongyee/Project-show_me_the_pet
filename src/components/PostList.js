@@ -1,65 +1,70 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-   faTrash,
-   faHeart,
-   faPenToSquare,
-} from '@fortawesome/free-solid-svg-icons';
-
-
-
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import {
+//    faTrash,
+//    faHeart,
+//    faPenToSquare,
+// } from '@fortawesome/free-solid-svg-icons';
 /*COMPONENTS*/
 import UploadBtn from './UploadBtn';
-
+import styled from 'styled-components';
+import axios from 'axios';
 
 
 const PostList = () => {
-   const PostedList = useSelector((state) => state.post.list);
-   const is_login = true;
-    const [tag, setTag] = React.useState('');
-    const tag_ref = React.useRef(null);
+   const title = useState();
+   const content = useState();
+   const [list, setList] = useState([]);
+   
+   
+   // const is_login = true;
+   // const [tag, setTag] = React.useState('');
+   // const tag_ref = React.useRef(null);
+   React.useEffect(()=> {
+      getPostListAxios();
+   }, []);
 
+   
+   const getPostListAxios = () => {
+      axios
+      .get('http://localhost:5001/list').then((response) => {
+      setList([...response.data]);
 
+      console.log('response?', list);
+   })
+   // .then(function (response) {
+   //    alert('Add Post');
+   //    console.log(response);
+   // })
+   // .catch(function (error) {
+   //    console.log(error.response.data.errorMessage);
+   // });
 
-         // const getPostListAxios = () => {
-         //    console.log('DataList?', DataList)
-         //    axios.get('http://localhost:5001/list').then((response) => {
-         //       console.log(response);
-         //    });
-
-         // };
+   };
    return (
       <>
+
          <Container>
-            {PostedList.map((data, index) => {
+            {list.map((data, index) => {
                return (
                   <Card key={index}>
-                     <ButtonBox>
-                        <Button>수정</Button>
-                        <Button>삭제</Button>
-                        {/* <FontAwesomeIcon icon="faRegular faPenToSquare" />
+                  
+                     {/* <ButtonBox>
+                        <FontAwesomeIcon icon="faRegular faPenToSquare" />
                         <FontAwesomeIcon icon="faRegular faHeart" />
                         <FontAwesomeIcon
                            icon="faRegular faTrash"
                            className="fa-lg"
-                        /> */}
-                     </ButtonBox>
+                        />
+                     </ButtonBox> */}
                      <Form>
-                        <Title>Lorem Ipsum</Title>
+                        <Title>{list[index].title}</Title>
                         <Time>Posted: 2022-06-11</Time>
-                        <Img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbnOYaZZWiwAv2Q0zX7GNvrKqCWF3Uh6fDUiJTJikmYun0iShkU0nZx6cJNDIn7ikkNKA&usqp=CAU" />
+                        <Img src={list[index].img}></Img>
                         <WhoPosted>someone</WhoPosted>
-                        <Content>
-                           Lorem Ipsum is simply dummy text of the printing and
-                           typesetting industry. Lorem Ipsum has been the
-                           industry's standard dummy text ever since the 1500s,
-                           when an unknown printer took a galley of type and
-                           scrambled it to make a type specimen book.
-                        </Content>
+                        <Content>{list[index].content}</Content>
                      </Form>
                   </Card>
                );
