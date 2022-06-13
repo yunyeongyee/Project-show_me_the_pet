@@ -6,25 +6,26 @@ import axios from 'axios';
 import Header from './Header';
 const AddPost = () => {
    const navigate = useNavigate();
+   const [is_login, setIsLogin] = useState(true);
    const title = React.useRef(null);
    const content = React.useRef(null);
-      const [imageSrc, setImageSrc] = useState('');
-   // const img = React.useRef(null);
-   // const file_link = React.useRef(null);
+   const [imageSrc, setImageSrc] = useState('');
+   const img = React.useRef(null);
+   const file_link = React.useRef(null);
 
    // const auth = getAuth();
    // const user = auth.currentUser;
    // const user_list = useSelector((state) => state.users.list);
    // const user_index = user_list.findIndex((p) => {
    //     return p.user_id === user.email;
-       const timeStamp = new Date();
-       const timePosted =
-          timeStamp.toDateString() +
-          ' (' +
-          timeStamp.getHours() +
-          ':' +
-          timeStamp.getMinutes() +
-          ' )' ;
+   const timeStamp = new Date();
+   const timePosted =
+      timeStamp.toDateString() +
+      ' (' +
+      timeStamp.getHours() +
+      ':' +
+      timeStamp.getMinutes() +
+      ' )';
    // });
 
    const addPostAxios = () => {
@@ -32,7 +33,7 @@ const AddPost = () => {
          .post('http://15.164.164.17/api/boards', {
             title: title.current?.value,
             content: content.current.value,
-            // timePosted: timePosted.current.value,
+            img: file_link.current.url,
          })
          .then(function (response) {
             alert('Add Post');
@@ -43,6 +44,24 @@ const AddPost = () => {
             console.log(error.response.data.errorMessage);
          });
    };
+   //   const uploadFB = async (e) => {
+   //      const encodeFileToBase64 = (fileBlob) => {
+   //         const reader = new FileReader();
+   //         reader.readAsDataURL(fileBlob);
+   //         return new Promise((resolve) => {
+   //            reader.onload = () => {
+   //               setImageSrc(reader.result);
+   //               resolve();
+   //            };
+   //         });
+   //      };
+   //      const uploaded_file = await uploadBytes(
+   //         ref(storage, `images/${e.target.files[0].name}`),
+   //         encodeFileToBase64(e.target.files[0])
+   //      );
+   //      const file_url = await getDownloadURL(uploaded_file.ref);
+   //      file_link.current = { url: file_url };
+   //   };
 
    return (
       <>

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import {
-//    faTrash,
-//    faHeart,
-//    faPenToSquare,
-// } from '@fortawesome/free-solid-svg-icons';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faHeart,
+   faPenToSquare,
+} from '@fortawesome/free-regular-svg-icons';
+import {faTrash} from '@fortawesome/free-solid-svg-icons';
 /*COMPONENTS*/
 import UploadBtn from './UploadBtn';
 import styled from 'styled-components';
@@ -14,13 +14,12 @@ import axios from 'axios';
 
 
 const PostList = () => {
-
+   const navigate = useNavigate();
    const title = useState();
    const content = useState();
-   const [list, setList] = useState([]);
-   
-   
-   // const is_login = true;
+   const [list, setList] = useState([]); 
+   const [likes, setLikes] = useState(); 
+   const [is_login, setIsLogin] = useState(true);
    // const [tag, setTag] = React.useState('');
    // const tag_ref = React.useRef(null);
    React.useEffect(()=> {
@@ -33,16 +32,14 @@ const PostList = () => {
          setList([...response.data.boards]);
 
          console.log('response?', response.data.boards);
-      });
-   // .then(function (response) {
-   //    alert('Add Post');
-   //    console.log(response);
-   // })
+      });  
+
    // .catch(function (error) {
    //    console.log(error.response.data.errorMessage);
    // });
 
    };
+
    return (
       <>
 
@@ -50,15 +47,30 @@ const PostList = () => {
             {list.map((data, index) => {
                return (
                   <Card key={index}>
-                     {/* <button onClick={getPostListAxios}>response</button> */}
-                     {/* <ButtonBox>
-                        <FontAwesomeIcon icon="faRegular faPenToSquare" />
-                        <FontAwesomeIcon icon="faRegular faHeart" />
-                        <FontAwesomeIcon
-                           icon="faRegular faTrash"
-                           className="fa-lg"
-                        />
-                     </ButtonBox> */}
+                     {is_login ? (
+                        <ButtonBox>
+                           <FontAwesomeIcon
+                              icon={faHeart}
+                              style={{ margin: 3 }}
+                           />
+                           {/* <FontAwesomeIcon
+                              icon={faPenToSquare}
+                              style={{ margin: 3 }}
+                              onClick={() => {
+                                 // navigate('/post/' + list.postid);
+                              }}
+                           /> */}
+                           <FontAwesomeIcon
+                              icon={faTrash}
+                              style={{ margin: 3 }}
+                              onClick={() => {
+                                 // dispatch(deletepost({index}));
+                                 window.alert('삭제 완료');
+                              }}
+                           />
+                        </ButtonBox>
+                     ) : null}
+
                      <Form>
                         <Title>{list[index].title}</Title>
                         <Time>Posted: 2022-06-11</Time>
