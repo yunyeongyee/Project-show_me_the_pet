@@ -41,7 +41,6 @@ const AddPost = () => {
          .catch(function (error) {
             console.log(error.response.data.errorMessage);
          });
-         console.log(timeStamp)
    };
 
    return (

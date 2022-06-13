@@ -5,6 +5,8 @@ import {
    faHeart,
    faPenToSquare,
 } from '@fortawesome/free-solid-svg-icons';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 /*COMPONENTS*/
 import UploadBtn from './UploadBtn';
 import styled from 'styled-components';
@@ -12,25 +14,25 @@ import axios from 'axios';
 
 
 const PostList = () => {
-   const DataList = [1, 2, 3, 4, 5];
+   const DataList = useSelector((state) => state.db.list);
    const is_login = true;
     const [tag, setTag] = React.useState('');
     const tag_ref = React.useRef(null);
 
 
 
-         const getPostListAxios = () => {
-            axios.get('http://localhost:5001/PostList').then((response) => {
-               console.log(response);
-            });
+         // const getPostListAxios = () => {
+         //    console.log('DataList?', DataList)
+         //    axios.get('http://localhost:5001/list').then((response) => {
+         //       console.log(response);
+         //    });
 
-         };
+         // };
    return (
       <>
 
          <Container>
             {DataList.map((data, index) => {
-               console.log(data);
                return (
                   <Card key={index}>
                      <ButtonBox>
