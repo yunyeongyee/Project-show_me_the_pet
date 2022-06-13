@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
    faTrash,
@@ -9,19 +9,22 @@ import {
 import UploadBtn from './UploadBtn';
 import styled from 'styled-components';
 import axios from 'axios';
+
+
 const PostList = () => {
    const DataList = [1, 2, 3, 4, 5];
-   // const theme = createTheme();  
-         // React.useEffect(() => {
-         //    callPostListAxios();
-         // }, []);
+   const is_login = true;
+    const [tag, setTag] = React.useState('');
+    const tag_ref = React.useRef(null);
 
-         // const callPostListAxios = () => {
-         //    axios.get('http://localhost:5001/PostList').then((response) => {
-         //       console.log(response);
-         //    });
 
-         // };
+
+         const getPostListAxios = () => {
+            axios.get('http://localhost:5001/PostList').then((response) => {
+               console.log(response);
+            });
+
+         };
    return (
       <>
 
