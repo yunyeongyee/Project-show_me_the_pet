@@ -5,28 +5,44 @@ import axios from 'axios';
 /*COMPONENTS*/
 import Header from './Header';
 const AddPost = () => {
-      const navigate = useNavigate();
-      const title = React.useRef(null);
-      const content = React.useRef(null);
-      const boardId = React.useRef(null);
-      // const img = React.useRef(null);
-      // const date = React.useRef(null);
-      // const file_link = React.useRef(null);
-      // const [imageSrc, setImageSrc] = useState('');
+   const navigate = useNavigate();
+   const title = React.useRef(null);
+   const content = React.useRef(null);
+   const boardId = React.useRef(null);
+   // const img = React.useRef(null);
+   // const file_link = React.useRef(null);
+   // const [imageSrc, setImageSrc] = useState('');
+   // const auth = getAuth();
+   // const user = auth.currentUser;
+   // const user_list = useSelector((state) => state.users.list);
+   // const user_index = user_list.findIndex((p) => {
+   //     return p.user_id === user.email;
+       const timeStamp = new Date();
+       const timePosted =
+          timeStamp.toDateString() +
+          ' (' +
+          timeStamp.getHours() +
+          ':' +
+          timeStamp.getMinutes() +
+          ' )' ;
+   // });
 
-      const addPostAxios = () => {
-         axios.post('http://localhost:5001/list', {
-               "title": title.current.value,
-               "content": content.current.value,
-            })
-            .then(function (response) {
-               alert('Add Post');
-               console.log(response);
-            })
-            .catch(function (error) {
-               console.log(error.response.data.errorMessage);
-            });
-      };
+   const addPostAxios = () => {
+      axios
+         .post('http://localhost:5001/list', {
+            title: title.current?.value,
+            content: content.current.value,
+            // timePosted: timePosted.current.value,
+         })
+         .then(function (response) {
+            alert('Add Post');
+            console.log(response);
+         })
+         .catch(function (error) {
+            console.log(error.response.data.errorMessage);
+         });
+         console.log(timeStamp)
+   };
 
    return (
       <>
@@ -35,12 +51,23 @@ const AddPost = () => {
             <Card>
                <Form>
                   <ButtonUpload onClick={addPostAxios}>업로드</ButtonUpload>
-                  <Title>Title</Title>
-                  <Input ref={title} type="text" />
+                     <TimePosted>{timePosted}</TimePosted>
                   <br />
+                  <Title>Title</Title>
+                  <Input
+                     ref={title}
+                     type="text"
+                     placeholder="제목을 입력해주세요."
+                  />
+                  <br />
+
                   <SubTitle>Choose Image</SubTitle>
                   <Label className="input-file-button" for="input-file">
-                     <InputFile type="file" id="input-file" />
+                     <InputFile
+                        type="file"
+                        id="input-file"
+                        placeholder="내용을 입력해주세요."
+                     />
                      사진선택
                   </Label>
                   {/* <Preview>
@@ -132,6 +159,16 @@ const ButtonUpload = styled.button`
       background-color: #ea9cc3;
       border: 1px solid #ea9cc3;
    }
+`;
+const TimePosted = styled.div`
+   display: inline;
+   width: 190px;
+   position: relative;
+   bottom: 10px;
+   justify-content: center;
+   font-size: 13px;
+   color: #ea9cc3;
+   text-align: center;
 `;
 
 const Title = styled.p`
