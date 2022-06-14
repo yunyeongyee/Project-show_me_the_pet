@@ -1,30 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
+
 /*COMPONENTS*/
 /*CSS*/
 import '../App.css';
 
 const Header = (props) => {
    const navigate = useNavigate();
-   const [isLogin, setIsLogin] = React.useState(false);
-   const [btnState, setBtnState] = React.useState();
-
-   const loginCheck = async (user) => {
-      if (user) {
-         setIsLogin(true);
-         setBtnState('LogOut');
-      } else {
-         setIsLogin(false);
-         setBtnState('Login');
-      }
-   };
-   // React.useEffect(() => {
-   //    onAuthStateChanged(auth, loginCheck);
-   // }, []);
-
-   const ClickLogin = () => {
-      // signOut(auth);
+   const token = localStorage.getItem("login-token")
+   console.log(token)
+   // const getUserInfo =() =>{
+   //     return () 
+   // };
+   // const isAdmin =() =>{
+   //     return axios.get("url" + "admin", {headers: authHeader() });
+   // };
+   // const ClickLogin = () => {
+   //    localStorage.getItem('login-token');
+   //    navigate('/PostList');
+   // };
+   const ClickLogOut = () => {
+      localStorage.removeItem('login-token');
       navigate('/Login');
    };
 
@@ -39,10 +36,18 @@ const Header = (props) => {
             >
                쇼미더펫
             </h1>
-            <nav>
-               <Button onClick={ClickLogin}>로그인</Button>
-               <Button>회원가입</Button>
-            </nav>
+
+            {!token ? (
+               <nav>
+                  <Button>로그인</Button>
+                  <Button>회원가입</Button>
+               </nav>
+            ) : (
+               <nav>
+                  <Button onClick={ClickLogOut}>로그아웃</Button>
+                  <Button>회원가입</Button>
+               </nav>
+            )}
          </header>
       </>
    );
