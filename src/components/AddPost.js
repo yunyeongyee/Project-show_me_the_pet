@@ -23,7 +23,6 @@ const AddPost = () => {
       timeStamp.getMinutes() +
       ' )';
 
-<<<<<<< HEAD
   const addPostAxios = () => {
     console.log('localStorage', localStorage.getItem('login-token'));
     axios({
@@ -44,26 +43,6 @@ const AddPost = () => {
           alert(msg);
        });
  };
-=======
-   const addPostAxios = () => {
-      axios
-         .post('http://15.164.164.17/api/boards', {
-            title: title.current?.value,
-            content: content.current.value,
-            img: file_link.current.url,
-         })
-         .then(function (response) {
-            alert('Add Post');
-            navigate('/');
-            // console.log(response);
-         })
-         .catch(function (error) {
-            console.log(error.response.data.errorMessage);
-         });
-   };
->>>>>>> yee
-
-
  
 
    return (
@@ -160,23 +139,10 @@ const ButtonUpload = styled.button`
    background-color: #e0e0e0;
    border: 1px solid #e0e0e0;
    border-radius: 5px;
-   cursor: pointer;
-   @keyframes push {
-      50% {
-         transform: scale(0.85);
-      }
-      100% {
-         transform: scale(1);
-      }
-   }
    &:hover,
    &:active,
    &:focus {
       cursor: pointer;
-      animation-name: push;
-      animation-duration: 0.4s;
-      animation-timing-function: linear;
-      animation-iteration-count: 1;
       background-color: #ea9cc3;
       border: 1px solid #ea9cc3;
    }

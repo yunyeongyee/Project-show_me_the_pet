@@ -54,11 +54,8 @@ const PostList = () => {
             {list.map((data, index) => {
                return (
                   <Card key={index}>
-<<<<<<< HEAD
-                     
-=======
+
                      {token ? (
->>>>>>> yee
                         <ButtonBox>
                            <FontAwesomeIcon
                               icon={faHeart}
@@ -80,11 +77,7 @@ const PostList = () => {
                               }}
                            />
                         </ButtonBox>
-<<<<<<< HEAD
-                     
-=======
                      ) : null}
->>>>>>> yee
 
                      <Form>
                         <Title>{list[index].title}</Title>
