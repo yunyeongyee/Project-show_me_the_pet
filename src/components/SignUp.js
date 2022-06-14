@@ -57,28 +57,39 @@ const SignUp = () => {
       const msg = response.data.msg
       const errorMessage = response.data.errorMessage
 
-      if (success === true) {
-        alert("사용 가능");
-       } else if (success === false) {
         alert(msg);
-       } 
+       
+    })
+    .catch(error => {
+      console.log(error);
+      alert(error.response.data.msg);
     })
   }
 
   const checkName = () => {
     const check_name = {
-      "name" : name_ref.current.value
+      "name" : name_ref.current.value,
     }
     axios.post("http://15.164.164.17/api/check/name", check_name).then(response => {
-      const success = response.data.success
+      console.log(response);
       const msg = response.data.msg
-      const errorMessage = response.data.errorMessage
+        alert(msg);  
+    })
+    .catch(error => {
+      console.log("에러 =>", error);
+      const name_length = name_ref.current.value.length;
+      const msg = error.response.data.msg;
+      const errorMessage = error.response.data.errorMessage;
 
-      if ( success === true) {
-        alert(msg);
-       } else if (success === false) {
-        alert(msg);
-       } 
+      alert(errorMessage);
+
+      // if ( name_length < 2 ) {
+      //   alert(errorMessage)
+      // } else if ( name_length > 8 ){
+      //   alert(errorMessage)
+      // } else {
+      //   alert(msg);
+      // }
     })
   }
 
