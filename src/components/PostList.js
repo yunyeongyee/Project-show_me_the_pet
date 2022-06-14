@@ -51,7 +51,7 @@ const PostList = () => {
             {list.map((data, index) => {
                return (
                   <Card key={index}>
-                     {is_login ? (
+                     
                         <ButtonBox>
                            <FontAwesomeIcon
                               icon={faHeart}
@@ -74,13 +74,13 @@ const PostList = () => {
                               }}
                            />
                         </ButtonBox>
-                     ) : }
+                     
 
                      <Form>
                         <Title>{list[index].title}</Title>
                         <Time>Posted: 2022-06-11</Time>
                         <Img src={list[index].img}></Img>
-                        <WhoPosted>someone</WhoPosted>
+                        <WhoPosted>{list[index].name}</WhoPosted>
                         <Content>{list[index].content}</Content>
                      </Form>
                   </Card>
