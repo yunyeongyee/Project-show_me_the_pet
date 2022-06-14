@@ -13,66 +13,80 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 const PostList = () => {
 
    const token = localStorage.getItem("login-token");
-
+   const [likes, setLikes] = React.useState(false);
    const title = useState();
    const content = useState();
-   const [list, setList] = useState([]); 
+   const [postedList, setPostedList] = useState([]); 
 
-   
-   // const handleDelete = (id) => {
-   //    const willDeletePost = list.filter(onePosted => onePosted.id !== id);
-   //    setList(willDeletePost);
-   //    console.log(willDeletePost);
-   // }
 
-   
-
-   
    React.useEffect(()=> {
       getPostListAxios();
+      deletePostedAxios();
 
    }, []);
 
-   
+// GET POSTED 
    const getPostListAxios = () => {
       axios.get('http://15.164.164.17/api/boards').then((response) => {
-         setList([...response.data.boards]);
-
+         setPostedList([...response.data.boards]);
          // console.log('response?', response.data.boards);
       });  
-
    // .catch(function (error) {
    //    console.log(error.response.data.errorMessage);
    // });
-
    };
+
+// DELETE POSTED
+const deletePostedAxios = () => {
+      axios.delete('http://15.164.164.17/api/boards/:boardId').then((response) => {
+         const willDeletePost = postedList.filter(
+            (onePosted) => onePosted.id !== response.data.boards.boardId
+         );
+         setPostedList(willDeletePost);
+         console.log("willDeletePost?", response.data.boards.boardId);
+      }); 
+}
+ 
+
+
 
    return (
       <>
-
          <Container>
-            {list.map((data, index) => {
+            {postedList.map((data, index) => {
                return (
                   <Card key={index}>
-
                      {token ? (
                         <ButtonBox>
-                           <FontAwesomeIcon
-                              icon={faHeart}
-                              style={{ margin: 3 }}
-                           />
+                           {likes ? (
+                              <FontAwesomeIcon
+                                 onClick={() => {
+                                    setLikes(false);
+                                 }}
+                                 icon={faHeart}
+                                 style={{ margin: 3 }}
+                              />
+                           ) : (
+                              <FontAwesomeIcon
+                                 onClick={() => {
+                                    setLikes(true);
+                                 }}
+                                 icon={faHeart}
+                                 style={{ margin: 3, backgroundColor: '#000' }}
+                              />
+                           )}
                            <FontAwesomeIcon
                               icon={faPenToSquare}
                               style={{ margin: 3 }}
                               onClick={() => {
-                                 // navigate('/post/' + list.postid);
+                                 // navigate('/post/' + postedList.postid);
                               }}
                            />
                            <FontAwesomeIcon
                               icon={faTrash}
                               style={{ margin: 3 }}
                               onClick={() => {
-                                 // handleDelete(list.id);
+                                 deletePostedAxios(postedList.id);
                                  window.alert('게시물이 삭제되었습니다.');
                               }}
                            />
@@ -80,17 +94,17 @@ const PostList = () => {
                      ) : null}
 
                      <Form>
-                        <Title>{list[index].title}</Title>
+                        <Title>{postedList[index].title}</Title>
                         <Time>Posted: 2022-06-11</Time>
-                        <Img src={list[index].img}></Img>
-                        <WhoPosted>{list[index].name}</WhoPosted>
-                        <Content>{list[index].content}</Content>
+                        <Img src={postedList[index].img}></Img>
+                        <WhoPosted>{postedList[index].name}</WhoPosted>
+                        <Content>{postedList[index].content}</Content>
                      </Form>
                   </Card>
                );
             })}
          </Container>
-         {token ? (<UploadBtn />) : null }
+         {token ? <UploadBtn /> : null}
       </>
    );
 }
@@ -158,11 +172,5 @@ const Content = styled.p`
 `;
 const ButtonBox = styled.div`
    text-align: right;
-`;
-const Button = styled.button`
-    text-align: right;
-    margin: 3px;
-    border: 1px solid transparent;
-    border-radius: 5px;
 `;
 export default PostList;
