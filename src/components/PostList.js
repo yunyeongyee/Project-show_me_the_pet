@@ -3,20 +3,28 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 
-
 /*COMPONENTS*/
 import UploadBtn from './UploadBtn';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
-import { faTrash } from '@fortawesome/ 2022-06-11free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const PostList = () => {
+
    const token = localStorage.getItem("login-token");
 
    const title = useState();
    const content = useState();
    const [list, setList] = useState([]); 
+
+   
+   // const handleDelete = (id) => {
+   //    const willDeletePost = list.filter(onePosted => onePosted.id !== id);
+   //    setList(willDeletePost);
+   //    console.log(willDeletePost);
+   // }
+
    
 
    
