@@ -1,18 +1,37 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const Login = () => {
 
   const userid_ref = React.useRef(null);
   const password_ref = React.useRef(null);
 
+
   const loginDB = () => {
     const login_list = {
-        userid : userid_ref.current.value,
-        password : password_ref.current.value,
-      }
-      console.log(login_list);
-      }
+      "userId" : userid_ref.current.value,
+      "password" : password_ref.current.value
+    }
+    axios.post("http://15.164.164.17/api/login", {
+      "userId": userid_ref.current.value,
+      "password": password_ref.current.value
+    }).then(response => {
+      const name = response.data.name
+      const token = response.data.token
+
+      localStorage.setItem("login-token", token);
+     
+      alert(name+" 님, 환영합니다!");
+      console.log("response.data => ", response.data)
+      
+     
+  }).catch(error => {
+    const msg = error.response.data.msg
+    alert(msg);
+  })
+  }; 
+
 
   return (
     <>
