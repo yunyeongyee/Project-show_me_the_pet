@@ -1,0 +1,264 @@
+[33mcommit c0e66dbf48ded30d2571ce29ad7434743d75a9f9[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32myee[m[33m)[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Tue Jun 14 20:11:54 2022 +0900
+
+    Merge branch 'yee'
+    
+    * yee:
+      DELETE comment
+      DELETE css (btn keyframe)
+      DELETE navigate
+      UPDATE change path
+      UPDATE PostList path: (/PostList -> /)
+      Revert "UPDATE PostList path: (/PostList -> /)"
+      UPDATE PostList path: (/PostList -> /)
+      UPDATE loginDB: add navigate('/PostList')
+      UPDATE (add login/out button)
+    
+    # Conflicts:
+    #       src/App.js
+    #       src/components/AddPost.js
+    #       src/components/PostList.js
+
+[33mcommit 2f835abe70a591dd776b68d7e303996730032cd9[m
+Merge: 279eedd 7a0be56
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Tue Jun 14 20:06:04 2022 +0900
+
+    UPDATE path
+
+[33mcommit 7a0be56df273211a964bad7ee9afb1930ccd199f[m[33m ([m[1;31morigin/yee[m[33m)[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Tue Jun 14 19:57:45 2022 +0900
+
+    DELETE comment
+
+[33mcommit 279eedd4db6488f85e47792ba75ec2e379a32022[m
+Merge: c071eaf 9c4c969
+Author: gygy2022 <2022gygy@gmail.com>
+Date:   Tue Jun 14 19:56:18 2022 +0900
+
+    Merge branch 'gayeon'
+    
+    * gayeon:
+      작은 수정
+      AddPost 컴포넌트 axios.post 수정해 headers에 토큰 담아서 전달
+      Login, SignUp 컴포넌트 수정
+
+[33mcommit 9c4c96972f0bc184f67e6532376d8c8edd1d4748[m
+Author: gygy2022 <2022gygy@gmail.com>
+Date:   Tue Jun 14 19:55:30 2022 +0900
+
+    작은 수정
+
+[33mcommit 5e6a5323a2b3370d2469d407dac15b350a73f97f[m
+Author: gygy2022 <2022gygy@gmail.com>
+Date:   Tue Jun 14 19:55:20 2022 +0900
+
+    AddPost 컴포넌트 axios.post 수정해 headers에 토큰 담아서 전달
+
+[33mcommit 0dd66c95ebc71afbf3ce1c6414853b679f4b5ce7[m
+Author: gygy2022 <2022gygy@gmail.com>
+Date:   Tue Jun 14 19:54:31 2022 +0900
+
+    Login, SignUp 컴포넌트 수정
+
+[33mcommit d60b47b14782a82432c8b84e4f06205f5c70f958[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Tue Jun 14 19:54:15 2022 +0900
+
+    DELETE css (btn keyframe)
+
+[33mcommit 10e54702281149d9d8c77fa68784a2884b8d7db9[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Tue Jun 14 18:50:39 2022 +0900
+
+    DELETE navigate
+
+[33mcommit 0c5b0361eab120afd723d36a98795f575cdfe6e4[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Tue Jun 14 18:49:03 2022 +0900
+
+    UPDATE change path
+
+[33mcommit 50eb9b6de851215c43085181abbaf702cc37a2e8[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Tue Jun 14 18:11:20 2022 +0900
+
+    UPDATE PostList path: (/PostList -> /)
+
+[33mcommit 0417fa87324e955359e2fd9d0000b5c8c59d7857[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Tue Jun 14 18:11:03 2022 +0900
+
+    Revert "UPDATE PostList path: (/PostList -> /)"
+    
+    This reverts commit 5bb6fc9fe94eb4088a9790f97501564152a7f157.
+
+[33mcommit 5bb6fc9fe94eb4088a9790f97501564152a7f157[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Tue Jun 14 18:10:21 2022 +0900
+
+    UPDATE PostList path: (/PostList -> /)
+
+[33mcommit e3f743d4372e09c95a2ed2445893ff6812b02173[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Tue Jun 14 17:20:42 2022 +0900
+
+    UPDATE loginDB: add navigate('/PostList')
+
+[33mcommit d8b415b8c62e5338dafe6ca46b19c5855aa2f519[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Tue Jun 14 17:19:15 2022 +0900
+
+    UPDATE (add login/out button)
+
+[33mcommit c071eaf8e09963d02113e393556692c075503905[m
+Merge: e4d8ddc 767e95c
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Tue Jun 14 12:24:06 2022 +0900
+
+    Merge branch 'yee'
+    
+    * yee: (26 commits)
+      UPDATING...
+      UPDATE db.json db
+      UPDATE priemier(addPostAxios(41) response)
+      UPDATE getPostListAxios
+      UPDATE resolve fontawesomeIcon err
+      UPDATE db.json
+      UPDATE  add list(img)
+      UPDATE component name(DeletPost ->DeletePost)
+      UPDATE ( DeletePost: function->const)
+      MOVE  import sequence
+      UPDATE  initialState list
+      CREATE DeletePost.js, UPDATE Route(DeletePost.js)
+      DELETE console.log
+      CREATE  (getPostListAxios)
+      UPDATE (add timeStamp)
+      PDATE  db.json data
+      UPDATE addPostAxios
+      UPDATE addPostAxios
+      UPDATE  db.json data
+      UPDATE  db.json data
+      ...
+
+[33mcommit 767e95c38dbc89cf7d4548fe8c4e21feaea02a52[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Tue Jun 14 12:21:10 2022 +0900
+
+    UPDATING...
+
+[33mcommit d48253179412eebd9dd5948c315d40f594e2b449[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Tue Jun 14 12:20:19 2022 +0900
+
+    UPDATE db.json db
+
+[33mcommit e4d8ddc05c6e205aa6e4f43d98aae8dcdf290b9a[m
+Merge: 8ea31cb a7dbf41
+Author: gygy2022 <2022gygy@gmail.com>
+Date:   Tue Jun 14 12:01:25 2022 +0900
+
+    Merge branch 'gayeon'
+    
+    * gayeon:
+      Login 컴포넌트 axios 수정 LocalStorage에 token 저장
+      Signup 컴포넌트 axios 수정
+      signUp 컴포넌트 실제 api와 통신 기초 작업
+      Login 컴포넌트 실제 api와 통신 기초 작업
+      SignUp 컴포넌트 mock api 기초 작업
+      Login 컴포넌트 mock api 기초 작업
+
+[33mcommit a7dbf41ae14d725ef06f7cef337a6a632dcc44f2[m
+Author: gygy2022 <2022gygy@gmail.com>
+Date:   Tue Jun 14 11:55:47 2022 +0900
+
+    Login 컴포넌트 axios 수정 LocalStorage에 token 저장
+
+[33mcommit 99a9d23d629c593b438be611404da42b939fe678[m
+Author: gygy2022 <2022gygy@gmail.com>
+Date:   Tue Jun 14 11:54:38 2022 +0900
+
+    Signup 컴포넌트 axios 수정
+
+[33mcommit 27cd35ea67ad87fc88f55fd49c5daf3e3382acea[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Tue Jun 14 09:17:32 2022 +0900
+
+    UPDATE priemier(addPostAxios(41) response)
+
+[33mcommit 6cfb6b8a81b584d804cc7230bd0524e264223a0d[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Tue Jun 14 09:02:46 2022 +0900
+
+    UPDATE getPostListAxios
+
+[33mcommit 6ecb6ab023c21abf8004325b961b8a0d2b246ff9[m
+Author: gygy2022 <2022gygy@gmail.com>
+Date:   Mon Jun 13 22:00:59 2022 +0900
+
+    signUp 컴포넌트 실제 api와 통신 기초 작업
+
+[33mcommit 1e9ec6599eea73124472e1ae4bde48d810ca1ffb[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Mon Jun 13 22:00:47 2022 +0900
+
+    UPDATE resolve fontawesomeIcon err
+
+[33mcommit 1f1cfea5dd0a768cc9cce9f7280c8e3d6131be58[m
+Author: gygy2022 <2022gygy@gmail.com>
+Date:   Mon Jun 13 22:00:47 2022 +0900
+
+    Login 컴포넌트 실제 api와 통신 기초 작업
+
+[33mcommit 4a9f900a428978eb606ffa120d86d9b87fed06bd[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Mon Jun 13 19:15:14 2022 +0900
+
+    UPDATE db.json
+
+[33mcommit 325eb3d88c9cdbd5f5769528e40528bb40ea36f5[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Mon Jun 13 16:55:39 2022 +0900
+
+    UPDATE  add list(img)
+
+[33mcommit d47b594fc3d72823cbfa5dea186b67806a1e36d2[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Mon Jun 13 14:58:38 2022 +0900
+
+    UPDATE component name(DeletPost ->DeletePost)
+
+[33mcommit 956f12aaef4b71e4a62536bf7cefb33a8433bc8b[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Mon Jun 13 13:44:53 2022 +0900
+
+    UPDATE ( DeletePost: function->const)
+
+[33mcommit 8d08aad0ecdb974e166922b8e5db61bf15163d69[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Mon Jun 13 13:38:37 2022 +0900
+
+    MOVE  import sequence
+
+[33mcommit 0082fbf19c9bb7f19b29026fd2c91edf8fdf92be[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Mon Jun 13 13:37:13 2022 +0900
+
+    UPDATE  initialState list
+
+[33mcommit a4a0bb68c288428c07cdb3106e08458c807f1eb9[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Mon Jun 13 13:23:57 2022 +0900
+
+    CREATE DeletePost.js,
+    UPDATE Route(DeletePost.js)
+
+[33mcommit 477041680389e0f585632d1e4a45503c983784b7[m
+Author: hi.its.yeey@gmail.com <hi.its.yeey@gmail.com>
+Date:   Mon Jun 13 12:51:10 2022 +0900
+
+    DELETE console.log
+
+[33mc
