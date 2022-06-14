@@ -48,7 +48,6 @@ const Header = (props) => {
             ) : (
                <nav>
                   <Button onClick={ClickLogOut}>로그아웃</Button>
-                  <Button onClick={ClickSignUp}>회원가입</Button>
                </nav>
             )}
          </header>
@@ -69,23 +68,10 @@ const Button = styled.button`
    background-color: #e0e0e0;
    border: 1px solid #e0e0e0;
    border-radius: 5px;
-
-   @keyframes push {
-      50% {
-         transform: scale(0.85);
-      }
-      100% {
-         transform: scale(1);
-      }
-   }
    &:hover,
    &:active,
    &:focus {
       cursor: pointer;
-      animation-name: push;
-      animation-duration: 0.4s;
-      animation-timing-function: linear;
-      animation-iteration-count: 1;
       background-color: #ea9cc3;
       border: 1px solid #ea9cc3;
    }
