@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-
+import {useNavigate} from 'react-router-dom';
 const SignUp = () => {
-
+  const navigate = useNavigate();
   const userid_ref = React.useRef(null);
   const password_ref = React.useRef(null);
   const confirmPassword_ref = React.useRef(null);
@@ -73,7 +73,8 @@ const SignUp = () => {
     axios.post("http://15.164.164.17/api/check/name", check_name).then(response => {
       console.log(response);
       const msg = response.data.msg
-        alert(msg);  
+        alert(msg); 
+        navigate('/PostList'); 
     })
     .catch(error => {
       console.log("에러 =>", error);

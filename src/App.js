@@ -14,9 +14,9 @@ function App() {
          <Header />
          <Routes>
             <Route path="/header" element={<Header />} />
+            <Route path="/" element={<PostList />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/PostList" element={<PostList />} />
             <Route path="/AddPost" element={<AddPost />} />
          </Routes>
       </div>
