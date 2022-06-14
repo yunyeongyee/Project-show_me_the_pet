@@ -1,50 +1,93 @@
-import * as React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-   faTrash,
-   faHeart,
-   faPenToSquare,
-} from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+
 /*COMPONENTS*/
 import UploadBtn from './UploadBtn';
-import styled from 'styled-components';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
 const PostList = () => {
-   const DataList = [1, 2, 3, 4, 5];
-   // const theme = createTheme();  
+   const navigate = useNavigate();
+   const [is_login, setIsLogin] = useState(true);
+   const title = useState();
+   const content = useState();
+   const [list, setList] = useState([]); 
+   const handleDelete = (id) => {
+      const willDeletePost = list.filter(onePosted => onePosted.id !== id);
+      setList(willDeletePost);
+      console.log(willDeletePost);
+   }
+
+   
+
+   
+   React.useEffect(()=> {
+      getPostListAxios();
+   }, []);
+
+   
+   const getPostListAxios = () => {
+      axios.get('http://15.164.164.17/api/boards').then((response) => {
+         setList([...response.data.boards]);
+
+         // console.log('response?', response.data.boards);
+      });  
+
+   // .catch(function (error) {
+   //    console.log(error.response.data.errorMessage);
+   // });
+
+   };
+
    return (
       <>
-
          <Container>
-            {DataList.map((data, index) => {
-               console.log(data);
+            {list.map((data, index) => {
                return (
                   <Card key={index}>
-                     <ButtonBox>
-                        <FontAwesomeIcon icon="faRegular faPenToSquare" />
-                        <FontAwesomeIcon icon="faRegular faHeart" />
-                        <FontAwesomeIcon
-                           icon="faRegular faTrash"
-                           className="fa-lg"
-                        />
-                     </ButtonBox>
+                     {is_login ? (
+                        <ButtonBox>
+                           <FontAwesomeIcon
+                              icon={faHeart}
+                              style={{ margin: 3 }}
+                           />
+                           <FontAwesomeIcon
+                              icon={faPenToSquare}
+                              style={{ margin: 3 }}
+                              onClick={() => {
+                                 // navigate('/post/' + list.postid);
+                              }}
+                           />
+                           <FontAwesomeIcon
+                              icon={faTrash}
+                              style={{ margin: 3 }}
+                              onClick={() => {
+                                 handleDelete(list.id);
+                                 window.alert('삭제 완료');
+                                 navigate('/PostList');
+                              }}
+                           />
+                        </ButtonBox>
+                     ) : }
+
                      <Form>
-                        <Title>Lorem Ipsum</Title>
+                        <Title>{list[index].title}</Title>
                         <Time>Posted: 2022-06-11</Time>
-                        <Img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbnOYaZZWiwAv2Q0zX7GNvrKqCWF3Uh6fDUiJTJikmYun0iShkU0nZx6cJNDIn7ikkNKA&usqp=CAU" />
+                        <Img src={list[index].img}></Img>
                         <WhoPosted>someone</WhoPosted>
-                        <Content>
-                           Lorem Ipsum is simply dummy text of the printing and
-                           typesetting industry. Lorem Ipsum has been the
-                           industry's standard dummy text ever since the 1500s,
-                           when an unknown printer took a galley of type and
-                           scrambled it to make a type specimen book.
-                        </Content>
+                        <Content>{list[index].content}</Content>
                      </Form>
                   </Card>
                );
             })}
          </Container>
-         <UploadBtn />
+         {is_login ? (<UploadBtn />) : null};
       </>
    );
 }
