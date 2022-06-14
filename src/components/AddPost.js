@@ -38,30 +38,13 @@ const AddPost = () => {
          .then(function (response) {
             alert('Add Post');
             navigate('/PostList');
-            console.log(response);
+            // console.log(response);
          })
          .catch(function (error) {
             console.log(error.response.data.errorMessage);
          });
    };
-   //   const uploadFB = async (e) => {
-   //      const encodeFileToBase64 = (fileBlob) => {
-   //         const reader = new FileReader();
-   //         reader.readAsDataURL(fileBlob);
-   //         return new Promise((resolve) => {
-   //            reader.onload = () => {
-   //               setImageSrc(reader.result);
-   //               resolve();
-   //            };
-   //         });
-   //      };
-   //      const uploaded_file = await uploadBytes(
-   //         ref(storage, `images/${e.target.files[0].name}`),
-   //         encodeFileToBase64(e.target.files[0])
-   //      );
-   //      const file_url = await getDownloadURL(uploaded_file.ref);
-   //      file_link.current = { url: file_url };
-   //   };
+
 
    return (
       <>
