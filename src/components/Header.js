@@ -16,13 +16,16 @@ const Header = (props) => {
    // const isAdmin =() =>{
    //     return axios.get("url" + "admin", {headers: authHeader() });
    // };
-   // const ClickLogin = () => {
-   //    localStorage.getItem('login-token');
-   //    navigate('/PostList');
-   // };
+   const ClickLogin = () => {
+      localStorage.getItem('login-token');
+      navigate('/Login');
+   };
    const ClickLogOut = () => {
       localStorage.removeItem('login-token');
-      navigate('/Login');
+      navigate('/');
+   };
+   const ClickSignUp = () => {
+      navigate('/SignUp');
    };
 
    return (
@@ -39,13 +42,13 @@ const Header = (props) => {
 
             {!token ? (
                <nav>
-                  <Button>로그인</Button>
-                  <Button>회원가입</Button>
+                  <Button onClick={ClickLogin}>로그인</Button>
+                  <Button onClick={ClickSignUp}>회원가입</Button>
                </nav>
             ) : (
                <nav>
                   <Button onClick={ClickLogOut}>로그아웃</Button>
-                  <Button>회원가입</Button>
+                  <Button onClick={ClickSignUp}>회원가입</Button>
                </nav>
             )}
          </header>
@@ -55,8 +58,10 @@ const Header = (props) => {
 const Button = styled.button`
    width: 67px;
    height: 30px;
+   position: relative;
+   right: 10px;
    float: right;
-   margin: 20px 10px;
+   margin: 20px 5px;
    padding: 5px;
    align-items: center;
    justify-content: center;

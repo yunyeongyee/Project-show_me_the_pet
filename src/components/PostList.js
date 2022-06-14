@@ -14,15 +14,18 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const PostList = () => {
    const navigate = useNavigate();
-      const [is_login, setIsLogin] = useState(true);
+   const [is_login, setIsLogin] = useState(true);
+   const token = localStorage.getItem("login-token");
    const title = useState();
    const content = useState();
    const [list, setList] = useState([]); 
-   const handleDelete = (id) => {
-      const willDeletePost = list.filter(onePosted => onePosted.id !== id);
-      setList(willDeletePost);
-      console.log(willDeletePost);
-   }
+
+   
+   // const handleDelete = (id) => {
+   //    const willDeletePost = list.filter(onePosted => onePosted.id !== id);
+   //    setList(willDeletePost);
+   //    console.log(willDeletePost);
+   // }
 
    
 
@@ -53,7 +56,7 @@ const PostList = () => {
             {list.map((data, index) => {
                return (
                   <Card key={index}>
-                     {is_login ? (
+                     {token ? (
                         <ButtonBox>
                            <FontAwesomeIcon
                               icon={faHeart}
@@ -70,8 +73,8 @@ const PostList = () => {
                               icon={faTrash}
                               style={{ margin: 3 }}
                               onClick={() => {
-                                 handleDelete(list.id);
-                                 window.alert('삭제 완료');
+                                 // handleDelete(list.id);
+                                 window.alert('게시물이 삭제되었습니다.');
                               }}
                            />
                         </ButtonBox>
@@ -88,7 +91,7 @@ const PostList = () => {
                );
             })}
          </Container>
-         <UploadBtn />
+         {token ? (<UploadBtn />) : null }
       </>
    );
 }

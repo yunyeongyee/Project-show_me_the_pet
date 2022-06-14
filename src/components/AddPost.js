@@ -37,7 +37,7 @@ const AddPost = () => {
          })
          .then(function (response) {
             alert('Add Post');
-            navigate('/PostList');
+            navigate('/');
             // console.log(response);
          })
          .catch(function (error) {
