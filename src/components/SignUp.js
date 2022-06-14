@@ -9,21 +9,6 @@ const SignUp = () => {
   const confirmPassword_ref = React.useRef(null);
   const name_ref = React.useRef(null);
 
-
-
-
-  // const signup_list = {
-  //   "userId" : "testid2022@test.com",
-  //   "password" : "test33",
-  //   "confirmPassword" : "test33",
-  //   "name" : "테스트다"
-  // }
-
-
-
-
-
-
   const signupDB = () => {
 
     const signup_list = {
@@ -33,35 +18,26 @@ const SignUp = () => {
       name : name_ref.current.value,
     }
 
-    axios.post("http://15.164.164.17/api/users", signup_list).then(response => {
-      const success = response.data.success
+    axios.post("http://15.164.164.17/api/users", signup_list)
+    .then(response => {
       const msg = response.data.msg
-     if (success === true) {
       alert(msg);
-     } else if (success === false) {
-      alert("회원 가입에 실패.");
-     }
+  })
+  .catch(error => {
+    alert(error.response.data.msg);
   });
   } 
-
-
-  
- 
 
   const checkID = () => {
     const check_id = {
       "userId" : userid_ref.current.value
     }
     axios.post("http://15.164.164.17/api/check/userId", check_id).then(response => {
-      const success = response.data.success
       const msg = response.data.msg
-      const errorMessage = response.data.errorMessage
-
         alert(msg);
        
     })
     .catch(error => {
-      console.log(error);
       alert(error.response.data.msg);
     })
   }
@@ -71,13 +47,10 @@ const SignUp = () => {
       "name" : name_ref.current.value,
     }
     axios.post("http://15.164.164.17/api/check/name", check_name).then(response => {
-      console.log(response);
       const msg = response.data.msg
         alert(msg); 
-        navigate('/'); 
     })
     .catch(error => {
-      console.log("에러 =>", error);
       const name_length = name_ref.current.value.length;
       const msg = error.response.data.msg;
       const errorMessage = error.response.data.msg;
