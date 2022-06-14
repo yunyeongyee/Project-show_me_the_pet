@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 
 /*COMPONENTS*/
@@ -13,9 +12,8 @@ import { faHeart, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const PostList = () => {
-   const navigate = useNavigate();
-   const [is_login, setIsLogin] = useState(true);
    const token = localStorage.getItem("login-token");
+
    const title = useState();
    const content = useState();
    const [list, setList] = useState([]); 
