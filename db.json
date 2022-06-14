@@ -3,17 +3,20 @@
     {
       "id": 1,
       "title": "그레이하운드",
-      "img": "https://blog.kakaocdn.net/dn/ctvkjb/btqvVR7LokB/ojJ05in8YDC3MKFIjdEEw1/img.png",
+      "name": "그레이",
+      "imgURL": "https://blog.kakaocdn.net/dn/ctvkjb/btqvVR7LokB/ojJ05in8YDC3MKFIjdEEw1/img.png",
       "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     },
     {
       "id": 2,
       "title": "데본렉스",
-      "img": "https://t1.daumcdn.net/cfile/tistory/22391C5058B3913613",
+      "name": "데본",
+      "imgURL": "https://t1.daumcdn.net/cfile/tistory/22391C5058B3913613",
       "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     },
     {
       "title": "도베르만",
+      "name": "도베",
       "content": "이 아이는 도베르만",
       "id": 3
     }
