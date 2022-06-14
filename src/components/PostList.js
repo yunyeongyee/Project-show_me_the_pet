@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
+import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faHeart,
-   faPenToSquare,
-} from '@fortawesome/free-regular-svg-icons';
-import {faTrash} from '@fortawesome/free-solid-svg-icons';
+
 /*COMPONENTS*/
 import UploadBtn from './UploadBtn';
-import styled from 'styled-components';
-import axios from 'axios';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const PostList = () => {
    const navigate = useNavigate();
    const title = useState();
    const content = useState();
    const [list, setList] = useState([]); 
-   const [likes, setLikes] = useState(); 
    const [is_login, setIsLogin] = useState(true);
-   // const [tag, setTag] = React.useState('');
-   // const tag_ref = React.useRef(null);
+
+   
+
+   
    React.useEffect(()=> {
       getPostListAxios();
    }, []);
@@ -39,6 +39,7 @@ const PostList = () => {
    // });
 
    };
+   
 
    return (
       <>
