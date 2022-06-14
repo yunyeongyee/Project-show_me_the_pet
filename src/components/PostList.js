@@ -14,7 +14,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const PostList = () => {
    const navigate = useNavigate();
-   const [is_login, setIsLogin] = useState(true);
+      const [is_login, setIsLogin] = useState(true);
    const title = useState();
    const content = useState();
    const [list, setList] = useState([]); 
@@ -29,6 +29,7 @@ const PostList = () => {
    
    React.useEffect(()=> {
       getPostListAxios();
+
    }, []);
 
    
@@ -47,6 +48,7 @@ const PostList = () => {
 
    return (
       <>
+
          <Container>
             {list.map((data, index) => {
                return (
@@ -70,11 +72,10 @@ const PostList = () => {
                               onClick={() => {
                                  handleDelete(list.id);
                                  window.alert('삭제 완료');
-                                 navigate('/PostList');
                               }}
                            />
                         </ButtonBox>
-                     ) : }
+                     ) : null}
 
                      <Form>
                         <Title>{list[index].title}</Title>
@@ -87,7 +88,7 @@ const PostList = () => {
                );
             })}
          </Container>
-         {is_login ? (<UploadBtn />) : null};
+         <UploadBtn />
       </>
    );
 }

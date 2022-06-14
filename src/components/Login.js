@@ -1,14 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
   const userid_ref = React.useRef(null);
   const password_ref = React.useRef(null);
-
+  const navigate = useNavigate();
 
   const loginDB = () => {
+    
     const login_list = {
       "userId" : userid_ref.current.value,
       "password" : password_ref.current.value
@@ -21,7 +23,7 @@ const Login = () => {
       const token = response.data.token
 
       localStorage.setItem("login-token", token);
-     
+      navigate('/PostList');
       alert(name+" 님, 환영합니다!");
       console.log("response.data => ", response.data)
       
