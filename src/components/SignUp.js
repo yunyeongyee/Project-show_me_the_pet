@@ -79,17 +79,15 @@ const SignUp = () => {
       console.log("에러 =>", error);
       const name_length = name_ref.current.value.length;
       const msg = error.response.data.msg;
-      const errorMessage = error.response.data.errorMessage;
+      const errorMessage = error.response.data.msg;
 
-      alert(errorMessage);
-
-      // if ( name_length < 2 ) {
-      //   alert(errorMessage)
-      // } else if ( name_length > 8 ){
-      //   alert(errorMessage)
-      // } else {
-      //   alert(msg);
-      // }
+      if ( name_length < 2 ) {
+        alert(msg)
+      } else if ( name_length > 8 ){
+        alert(msg)
+      } else {
+        alert(msg);
+      }
     })
   }
 
@@ -174,15 +172,16 @@ box-shadow: 0 13px 27px -5px hsla(240, 30.1%, 28%, 0.25),
 
  button:hover {
   background-color:#edb6d1;
-  color:#fff;
  }
 `
 
 let SignUp_title = styled.div`
-font-size:50px;
-font-weight:100;
+font-size:30px;
+font-weight:400;
 border-bottom:5px solid #edb6d1;
 text-align:center;
+padding-bottom: 10px; 
+margin-bottom: 40px;
 `
 
 let Buttons = styled.div`

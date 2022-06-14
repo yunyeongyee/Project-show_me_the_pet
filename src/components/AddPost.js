@@ -13,11 +13,7 @@ const AddPost = () => {
    const img = React.useRef(null);
    const file_link = React.useRef(null);
 
-   // const auth = getAuth();
-   // const user = auth.currentUser;
-   // const user_list = useSelector((state) => state.users.list);
-   // const user_index = user_list.findIndex((p) => {
-   //     return p.user_id === user.email;
+ 
    const timeStamp = new Date();
    const timePosted =
       timeStamp.toDateString() +
@@ -26,25 +22,30 @@ const AddPost = () => {
       ':' +
       timeStamp.getMinutes() +
       ' )';
-   // });
 
-   const addPostAxios = () => {
-      axios
-         .post('http://15.164.164.17/api/boards', {
-            title: title.current?.value,
-            content: content.current.value,
-            img: file_link.current.url,
-         })
-         .then(function (response) {
-            alert('Add Post');
-            navigate('/PostList');
-            // console.log(response);
-         })
-         .catch(function (error) {
-            console.log(error.response.data.errorMessage);
-         });
-   };
+  const addPostAxios = () => {
+    console.log('localStorage', localStorage.getItem('login-token'));
+    axios({
+      method: "post",
+      url: 'http://15.164.164.17/api/boards',
+      headers: {"Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem('login-token')},
+      data: {
+        title: title.current?.value,
+        content: content.current.value,
+      }
+    })
+       .then(function (response) {
+          navigate('/');
+       })
+       .catch(function (error) {
+        const msg = error.response.data.errorMessage;
+          alert(msg);
+       });
+ };
 
+
+ 
 
    return (
       <>
@@ -53,7 +54,6 @@ const AddPost = () => {
             <Card>
                <Form>
                   <ButtonUpload onClick={addPostAxios}>업로드</ButtonUpload>
-                  <TimePosted>{timePosted}</TimePosted>
                   <br />
                   <Title>Title</Title>
                   <Input
@@ -204,7 +204,8 @@ const Input = styled.input`
    &:active {
       cursor: pointer;
       border-bottom: 1px solid #EA9CC3;
-      transform: scale(1.1);
+      outline-color:#edb6d1;
+
    }
 `;
 const InputFile = styled.input`
@@ -223,26 +224,6 @@ const Label = styled.label`
    background-color: #e0e0e0;
    border: 1px solid #e0e0e0;
    border-radius: 5px;
-   cursor: pointer;
-   @keyframes push {
-      50% {
-         transform: scale(0.85);
-      }
-      100% {
-         transform: scale(1);
-      }
-   }
-   &:hover,
-   &:active,
-   &:focus {
-      cursor: pointer;
-      animation-name: push;
-      animation-duration: 0.4s;
-      animation-timing-function: linear;
-      animation-iteration-count: 1;
-      background-color: #ea9cc3;
-      border: 1px solid #ea9cc3;
-   }
 `;
 const Preview = styled.div`
 width: 300px;
@@ -264,6 +245,7 @@ const Textarea = styled.textarea`
    &:active {
       cursor: pointer;
       border: 1px solid #ea9cc3;
+      outline-color:#edb6d1;
    }
 `;
 export default AddPost;
