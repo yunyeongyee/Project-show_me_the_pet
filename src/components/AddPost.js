@@ -10,7 +10,7 @@ const AddPost = () => {
    const title = React.useRef(null);
    const content = React.useRef(null);
    const [imageSrc, setImageSrc] = useState('');
-   const imgURL = React.useRef(null);
+   const img = React.useRef(null);
    const file_link = React.useRef(null);
 
    // const auth = getAuth();
@@ -33,7 +33,7 @@ const AddPost = () => {
          .post('http://15.164.164.17/api/boards', {
             title: title.current?.value,
             content: content.current.value,
-            imgURL: file_link.current.imgURL,
+            img: file_link.current.url,
          })
          .then(function (response) {
             alert('Add Post');
