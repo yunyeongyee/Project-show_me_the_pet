@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-
+import {useNavigate} from 'react-router-dom';
 const SignUp = () => {
-
+  const navigate = useNavigate();
   const userid_ref = React.useRef(null);
   const password_ref = React.useRef(null);
   const confirmPassword_ref = React.useRef(null);
@@ -73,7 +73,8 @@ const SignUp = () => {
     axios.post("http://15.164.164.17/api/check/name", check_name).then(response => {
       console.log(response);
       const msg = response.data.msg
-        alert(msg);  
+        alert(msg); 
+        navigate('/'); 
     })
     .catch(error => {
       console.log("에러 =>", error);
@@ -92,47 +93,41 @@ const SignUp = () => {
   }
 
   return (
-    <>
-    <div>
-      <h1>SignUp 컴포넌트 페이지</h1>
-      <SignUp_wrap>
-        <SignUp_title>회원가입</SignUp_title>
-        <label>
-          <p>아이디(이메일)</p>
-          <input type="email" ref={userid_ref}/>
-        </label>
-        <button onClick={checkID}>중복확인</button>
-        
-        <label>
-          <p>비밀번호</p>
-          <input type="password" ref={password_ref} />
-        </label>
-        <label>
-          <p>비밀번호 확인</p>
-          <input type="password" ref={confirmPassword_ref}/>
-        </label>
-        <label>
-          <p>닉네임</p>
-          <input type="text" ref={name_ref}/>
-        </label>
+     <>
+        <div>
+           <h1>SignUp 컴포넌트 페이지</h1>
+           <SignUp_wrap>
+              <SignUp_title>회원가입</SignUp_title>
+              <label>
+                 <p>아이디(이메일)</p>
+                 <input type="email" ref={userid_ref} />
+              </label>
+              <button onClick={checkID}>중복확인</button>
 
-        
-        <button onClick={checkName}>중복확인</button>
-        <br/>
-        <br/>
-        <Buttons>
-        <button>취소</button>
-        <button onClick={signupDB}>가입하기</button>
-        </Buttons>
+              <label>
+                 <p>비밀번호</p>
+                 <input type="password" ref={password_ref} />
+              </label>
+              <label>
+                 <p>비밀번호 확인</p>
+                 <input type="password" ref={confirmPassword_ref} />
+              </label>
+              <label>
+                 <p>닉네임</p>
+                 <input type="text" ref={name_ref} />
+              </label>
 
-
-      </SignUp_wrap>
-
-
-
-    </div>
-    </>
-  )
+              <button onClick={checkName}>중복확인</button>
+              <br />
+              <br />
+              <Buttons>
+                 <button onClick={signupDB}>가입하기</button>
+                 <button>취소</button>
+              </Buttons>
+           </SignUp_wrap>
+        </div>
+     </>
+  );
 }
 
 let SignUp_wrap = styled.div`
