@@ -98,15 +98,16 @@ box-shadow: 0 13px 27px -5px hsla(240, 30.1%, 28%, 0.25),
 
  button:hover {
   background-color:#edb6d1;
-  color:#fff;
  }
 `
 
 let Login_title = styled.div`
-font-size:50px;
-font-weight:100;
+font-size:30px;
+font-weight:400;
 border-bottom:5px solid #edb6d1;
 text-align:center;
+padding-bottom: 10px; 
+margin-bottom: 40px;
 `
 
 let Buttons = styled.div`
