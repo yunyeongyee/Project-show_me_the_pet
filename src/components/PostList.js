@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-
 
 /*COMPONENTS*/
 import UploadBtn from './UploadBtn';
@@ -13,22 +11,26 @@ import { faHeart, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const PostList = () => {
-   const navigate = useNavigate();
-   const [is_login, setIsLogin] = useState(true);
+
+   const token = localStorage.getItem("login-token");
+
    const title = useState();
    const content = useState();
    const [list, setList] = useState([]); 
-   const handleDelete = (id) => {
-      const willDeletePost = list.filter(onePosted => onePosted.id !== id);
-      setList(willDeletePost);
-      console.log(willDeletePost);
-   }
+
+   
+   // const handleDelete = (id) => {
+   //    const willDeletePost = list.filter(onePosted => onePosted.id !== id);
+   //    setList(willDeletePost);
+   //    console.log(willDeletePost);
+   // }
 
    
 
    
    React.useEffect(()=> {
       getPostListAxios();
+
    }, []);
 
    
@@ -47,11 +49,16 @@ const PostList = () => {
 
    return (
       <>
+
          <Container>
             {list.map((data, index) => {
                return (
                   <Card key={index}>
+<<<<<<< HEAD
                      
+=======
+                     {token ? (
+>>>>>>> yee
                         <ButtonBox>
                            <FontAwesomeIcon
                               icon={faHeart}
@@ -68,13 +75,16 @@ const PostList = () => {
                               icon={faTrash}
                               style={{ margin: 3 }}
                               onClick={() => {
-                                 handleDelete(list.id);
-                                 window.alert('삭제 완료');
-                                 navigate('/PostList');
+                                 // handleDelete(list.id);
+                                 window.alert('게시물이 삭제되었습니다.');
                               }}
                            />
                         </ButtonBox>
+<<<<<<< HEAD
                      
+=======
+                     ) : null}
+>>>>>>> yee
 
                      <Form>
                         <Title>{list[index].title}</Title>
@@ -87,7 +97,7 @@ const PostList = () => {
                );
             })}
          </Container>
-         {is_login ? (<UploadBtn />) : null};
+         {token ? (<UploadBtn />) : null }
       </>
    );
 }

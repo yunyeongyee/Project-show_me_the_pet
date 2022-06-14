@@ -1,14 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
   const userid_ref = React.useRef(null);
   const password_ref = React.useRef(null);
-
+  const navigate = useNavigate();
 
   const loginDB = () => {
+    
     const login_list = {
       "userId" : userid_ref.current.value,
       "password" : password_ref.current.value
@@ -21,7 +23,7 @@ const Login = () => {
       const token = response.data.token
 
       localStorage.setItem("login-token", token);
-     
+      navigate('/');
       alert(name+" 님, 환영합니다!");
       console.log("response.data => ", response.data)
       
@@ -34,30 +36,29 @@ const Login = () => {
 
 
   return (
-    <>
-    <div>
-      <h1>Login 컴포넌트 화면</h1>
-      <Login_wrap>
-        <Login_title>로그인</Login_title>
-        <label>
-          <p>아이디(이메일)</p>
-          <input type="email" ref={userid_ref} />
-        </label>
+     <>
+        <div>
+           <h1>Login 컴포넌트 화면</h1>
+           <Login_wrap>
+              <Login_title>로그인</Login_title>
+              <label>
+                 <p>아이디(이메일)</p>
+                 <input type="email" ref={userid_ref} />
+              </label>
 
-        
-        <label>
-          <p>비밀번호</p>
-          <input type="password" ref={password_ref}/>
-        </label>
-        <br/>
-        <br/>
-        <Buttons>
-        <button>취소</button>
-        <button onClick={loginDB}>로그인</button>
-        </Buttons>
-      </Login_wrap>
-    </div>
-    </>
+              <label>
+                 <p>비밀번호</p>
+                 <input type="password" ref={password_ref} />
+              </label>
+              <br />
+              <br />
+              <Buttons>
+                 <button onClick={loginDB}>로그인</button>
+                 <button>취소</button>
+              </Buttons>
+           </Login_wrap>
+        </div>
+     </>
   );
 }
 

@@ -23,6 +23,7 @@ const AddPost = () => {
       timeStamp.getMinutes() +
       ' )';
 
+<<<<<<< HEAD
   const addPostAxios = () => {
     console.log('localStorage', localStorage.getItem('login-token'));
     axios({
@@ -43,6 +44,24 @@ const AddPost = () => {
           alert(msg);
        });
  };
+=======
+   const addPostAxios = () => {
+      axios
+         .post('http://15.164.164.17/api/boards', {
+            title: title.current?.value,
+            content: content.current.value,
+            img: file_link.current.url,
+         })
+         .then(function (response) {
+            alert('Add Post');
+            navigate('/');
+            // console.log(response);
+         })
+         .catch(function (error) {
+            console.log(error.response.data.errorMessage);
+         });
+   };
+>>>>>>> yee
 
 
  
