@@ -12,11 +12,13 @@ const SignUp = () => {
   const signupDB = () => {
 
     const signup_list = {
-      userid : userid_ref.current.value,
+      userId : userid_ref.current.value,
       password : password_ref.current.value,
       confirmPassword : confirmPassword_ref.current.value,
       name : name_ref.current.value,
     }
+
+    console.log(signup_list);
 
     axios.post("http://15.164.164.17/api/users", signup_list)
     .then(response => {
@@ -38,7 +40,9 @@ const SignUp = () => {
        
     })
     .catch(error => {
-      alert(error.response.data.msg);
+      const msg = error.response.data.msg;
+      alert(msg);
+     
     })
   }
 
@@ -76,6 +80,7 @@ const SignUp = () => {
                  <input type="email" ref={userid_ref} />
               </label>
               <button onClick={checkID}>중복확인</button>
+              <p id="check_id_msg"></p>
 
               <label>
                  <p>비밀번호</p>
