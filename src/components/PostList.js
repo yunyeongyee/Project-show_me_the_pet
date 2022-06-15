@@ -15,7 +15,6 @@ const PostList = () => {
    const navigate = useNavigate();
    const token = localStorage.getItem('login-token');
    const [postedList, setPostedList] = useState([]);
-           console.log(postedList);
    const title = useState();
    const content = useState();
    const [likes, setLikes] = useState(false);
