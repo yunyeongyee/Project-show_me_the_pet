@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
+
 const SignUp = () => {
   const navigate = useNavigate();
   const userid_ref = React.useRef(null);
@@ -9,13 +10,73 @@ const SignUp = () => {
   const confirmPassword_ref = React.useRef(null);
   const name_ref = React.useRef(null);
 
+  const [id_msg, set_id_msg] = React.useState(null);
+  const [id_check, set_id_check] = React.useState(false);
+  const [pw_msg, set_pw_msg] = React.useState(null);
+  const [check_pw, set_check_pw] = React.useState(null);
+  const [confirm_pw_msg, set_confirm_pw_msg] = React.useState(null);
+  const [name_msg, set_name_msg] = React.useState(null);
+  const [name_check, set_name_check] = React.useState(false);
+
+
+   const isEmail = (asValue) => {
+    var regExp = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+    return regExp.test(asValue); // 형식에 맞는 경우 true 리턴
+  }
+
+  const checkIdState = (e) => {
+    let id = e.target.value
+
+    if (id === "") {
+      set_id_msg("");
+    } else if (!isEmail(id)) {
+      set_id_msg("이메일 형식이 아닙니다.");
+    } else {
+      set_id_msg("");
+    }
+  }
+
+  const checkPwState = (e) => {
+    let pw = e.target.value
+    if (pw === "" || pw.length >= 5) {
+      set_pw_msg("");
+      set_check_pw(pw);
+    } else if (pw.length < 4) {
+      set_pw_msg("비밀번호는 4자 이상");
+    } 
+  }
+
+  const confirmPwState = (e) => {
+    let confirm_pw = e.target.value
+    let get_pw = check_pw
+    if (get_pw !== confirm_pw) {
+      set_confirm_pw_msg("비밀번호가 일치하지 않습니다!")
+    } else if (get_pw === confirm_pw || confirm_pw === "") {
+      set_confirm_pw_msg("")
+    } 
+  }
+
+  const checkNameState = (e) => {
+    let name = e.target.value
+    if (name === "") {
+      set_name_msg("")
+    } else if ( name.length < 2 || name.length > 8 ) {
+      set_name_msg("2~8자의 한글, 영문, 숫자만 사용 가능합니다.")
+    } else {
+      set_name_msg("")
+    }
+  }
+
   const signupDB = () => {
+    
 
     const signup_list = {
       userId : userid_ref.current.value,
       password : password_ref.current.value,
       confirmPassword : confirmPassword_ref.current.value,
       name : name_ref.current.value,
+      checkId : id_check,
+      checkName : name_check
     }
 
     console.log(signup_list);
@@ -24,6 +85,7 @@ const SignUp = () => {
     .then(response => {
       const msg = response.data.msg
       alert(msg);
+      navigate("/");
   })
   .catch(error => {
     alert(error.response.data.msg);
@@ -36,13 +98,13 @@ const SignUp = () => {
     }
     axios.post("http://15.164.164.17/api/check/userId", check_id).then(response => {
       const msg = response.data.msg
+        set_id_check(true);
         alert(msg);
-       
     })
     .catch(error => {
       const msg = error.response.data.msg;
+      set_id_check(false);
       alert(msg);
-     
     })
   }
 
@@ -52,12 +114,16 @@ const SignUp = () => {
     }
     axios.post("http://15.164.164.17/api/check/name", check_name).then(response => {
       const msg = response.data.msg
+        set_name_check(true);
         alert(msg); 
+     
     })
     .catch(error => {
       const name_length = name_ref.current.value.length;
       const msg = error.response.data.msg;
       const errorMessage = error.response.data.msg;
+
+      set_name_check(false);
 
       if ( name_length < 2 ) {
         alert(msg)
@@ -72,31 +138,31 @@ const SignUp = () => {
   return (
      <>
         <div>
-           <h1>SignUp 컴포넌트 페이지</h1>
            <SignUp_wrap>
               <SignUp_title>회원가입</SignUp_title>
               <label>
                  <p>아이디(이메일)</p>
-                 <input type="email" ref={userid_ref} />
+                 <input type="email" ref={userid_ref} onChange={checkIdState}/>
               </label>
               <button onClick={checkID}>중복확인</button>
-              <p id="check_id_msg"></p>
+              <Check_msg>{id_msg}</Check_msg>
 
               <label>
                  <p>비밀번호</p>
-                 <input type="password" ref={password_ref} />
+                 <input type="password" ref={password_ref} onChange={checkPwState} />
               </label>
+              <Check_msg>{pw_msg}</Check_msg>
               <label>
                  <p>비밀번호 확인</p>
-                 <input type="password" ref={confirmPassword_ref} />
+                 <input type="password" ref={confirmPassword_ref} onChange={confirmPwState}/>
               </label>
+              <Check_msg>{confirm_pw_msg}</Check_msg>
               <label>
                  <p>닉네임</p>
-                 <input type="text" ref={name_ref} />
+                 <input type="text" ref={name_ref} onChange={checkNameState}/>
               </label>
-
               <button onClick={checkName}>중복확인</button>
-              <br />
+              <Check_msg>{name_msg}</Check_msg>
               <br />
               <Buttons>
                  <button onClick={signupDB}>가입하기</button>
@@ -107,6 +173,14 @@ const SignUp = () => {
      </>
   );
 }
+
+let Check_msg = styled.div`
+color:red;
+height:20px;
+box-sizing:border-box;
+font-size:13px;
+margin-top:1px;
+`
 
 let SignUp_wrap = styled.div`
 margin:0 auto;
@@ -145,6 +219,10 @@ box-shadow: 0 13px 27px -5px hsla(240, 30.1%, 28%, 0.25),
 
  button:hover {
   background-color:#edb6d1;
+ }
+
+ p {
+  margin-bottom:2px;
  }
 `
 
