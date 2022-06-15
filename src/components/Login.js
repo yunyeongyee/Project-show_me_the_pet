@@ -63,7 +63,7 @@ const Login = () => {
 }
 
 let Login_wrap = styled.div`
-margin:0 auto;
+margin:150px auto;
 width:500px;
 height:400px;
 padding:20px;
