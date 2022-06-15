@@ -2,81 +2,134 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { useNavigate } from 'react-router-dom';
 /*COMPONENTS*/
 import UploadBtn from './UploadBtn';
-
+import Modal from './Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
+
 const PostList = () => {
-   const token = localStorage.getItem("login-token");
+   const navigate = useNavigate();
+   const token = localStorage.getItem('login-token');
+   const [postedList, setPostedList] = useState([]);
+           console.log(postedList);
    const title = useState();
    const content = useState();
-   const [list, setList] = useState([]); 
-   
-   React.useEffect(()=> {
+   const [likes, setLikes] = useState(false);
+   const [modal, setModal] = useState(false);
+   const clickModal = () => {
+      setModal(!modal);
+      // navigate('/post/' + postedList.postid);
+   };
+   React.useEffect(() => {
       getPostListAxios();
-
+      deletePostedAxios();
    }, []);
 
-   
+   // GET POSTED
    const getPostListAxios = () => {
       axios.get('http://15.164.164.17/api/boards').then((response) => {
-         setList([...response.data.boards]);
+         setPostedList([...response.data.boards]);
          // console.log('response?', response.data.boards);
-      });  
-   // .catch(function (error) {
-   //    console.log(error.response.data.errorMessage);
-   // });
-
+      });
+      // .catch(function (error) {
+      //    console.log(error.response.data.,msg);
+      // });
    };
+   // EDIT POSTED
+   // const deletePostedAxios = () => {
+   //    axios
+   //       .delete(
+   //          'http://15.164.164.17/api/boards/:boardId' + postedList.boardId,
+   //          {
+   //             headers: { Authorization: 'Bearer ' + `${token}` },
+   //          }
+   //       )
+   //       .then((response) => {
+   //          console.log(response);
+   //       });
+   // };
+
+   const deletePostedAxios = (index) => {
+      // console.log( postedList)
+      // console.log( postedList[ index ])
+      if (postedList.length > 0)
+         {
+            axios
+               .delete(
+                  'http://15.164.164.17/api/boards/' +
+                     postedList[index]?.boardId,
+                  {
+                     headers: { Authorization: 'Bearer ' + `${token}` },
+                  }
+               )
+               .then((response) => {
+                  window.alert('게시물이 삭제되었습니다.');
+                  window.location.reload();
+               })
+               .catch(function (error) {
+                  console.log(error.response.data.msg);
+               });
+         }
+   };
+
 
    return (
       <>
-
          <Container>
-            {list.map((data, index) => {
+            {postedList.map((data, index) => {
                return (
                   <Card key={index}>
-
                      {token ? (
                         <ButtonBox>
-                           <FontAwesomeIcon
-                              icon={faHeart}
-                              style={{ margin: 3 }}
-                           />
+                           {likes ? (
+                              <FontAwesomeIcon
+                                 onClick={() => {
+                                    setLikes(false);
+                                 }}
+                                 icon={faHeart}
+                                 style={{ margin: 3 }}
+                              />
+                           ) : (
+                              <FontAwesomeIcon
+                                 onClick={() => {
+                                    setLikes(true);
+                                 }}
+                                 icon={faHeart}
+                                 style={{ margin: 3 }}
+                              />
+                           )}
                            <FontAwesomeIcon
                               icon={faPenToSquare}
                               style={{ margin: 3 }}
-                              onClick={() => {
-                                 // navigate('/post/' + list.postid);
-                              }}
+                              onClick={clickModal}
                            />
                            <FontAwesomeIcon
                               icon={faTrash}
                               style={{ margin: 3 }}
                               onClick={() => {
-                                 // handleDelete(list.id);
-                                 window.alert('게시물이 삭제되었습니다.');
+                                 deletePostedAxios(index)
+            
                               }}
                            />
                         </ButtonBox>
                      ) : null}
 
                      <Form>
-                        <Title>{list[index].title}</Title>
+                        <Title>{postedList[index].title}</Title>
                         <Time>Posted: 2022-06-11</Time>
-                        <Img src={list[index].img}></Img>
-                        <WhoPosted>{list[index].name}</WhoPosted>
-                        <Content>{list[index].content}</Content>
+                        <Img src={postedList[index].img}></Img>
+                        <WhoPosted>{postedList[index].name}</WhoPosted>
+                        <Content>{postedList[index].content}</Content>
                      </Form>
                   </Card>
                );
             })}
          </Container>
-         {token ? (<UploadBtn />) : null }
+         {token ? <UploadBtn /> : null}
       </>
    );
 }
@@ -144,11 +197,5 @@ const Content = styled.p`
 `;
 const ButtonBox = styled.div`
    text-align: right;
-`;
-const Button = styled.button`
-    text-align: right;
-    margin: 3px;
-    border: 1px solid transparent;
-    border-radius: 5px;
 `;
 export default PostList;
