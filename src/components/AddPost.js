@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -14,15 +14,6 @@ const AddPost = () => {
    const file_link = React.useRef(null);
 
  
-   const timeStamp = new Date();
-   const timePosted =
-      timeStamp.toDateString() +
-      ' (' +
-      timeStamp.getHours() +
-      ':' +
-      timeStamp.getMinutes() +
-      ' )';
-
   const addPostAxios = () => {
     console.log('localStorage', localStorage.getItem('login-token'));
     axios({

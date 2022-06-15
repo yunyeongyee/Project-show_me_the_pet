@@ -107,7 +107,7 @@ const PostList = () => {
                                  setModalOpen(true);
                               }}
                            />
-                           {modalOpen && <EditPost setOpenModal={setModalOpen} />}
+
                            <FontAwesomeIcon
                               icon={faTrash}
                               style={{ margin: 3 }}
@@ -128,7 +128,9 @@ const PostList = () => {
                   </Card>
                );
             })}
+            {modalOpen && <EditPost setOpenModal={setModalOpen} />}
          </Container>
+
          {token ? <UploadBtn /> : null}
       </>
    );
