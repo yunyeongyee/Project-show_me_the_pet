@@ -38,6 +38,7 @@ const PostList = () => {
       //    console.log(error.response.data.,msg);
       // });
    };
+   
    // EDIT POSTED
    // const deletePostedAxios = () => {
    //    axios
@@ -52,29 +53,27 @@ const PostList = () => {
    //       });
    // };
 
+   // DELETE POSTED
    const deletePostedAxios = (index) => {
       // console.log( postedList)
       // console.log( postedList[ index ])
-      if (postedList.length > 0)
-         {
-            axios
-               .delete(
-                  'http://15.164.164.17/api/boards/' +
-                     postedList[index]?.boardId,
-                  {
-                     headers: { Authorization: 'Bearer ' + `${token}` },
-                  }
-               )
-               .then((response) => {
-                  window.alert('게시물이 삭제되었습니다.');
-                  window.location.reload();
-               })
-               .catch(function (error) {
-                  console.log(error.response.data.msg);
-               });
-         }
+      if (postedList.length > 0) {
+         axios
+            .delete(
+               'http://15.164.164.17/api/boards/' + postedList[index]?.boardId,
+               {
+                  headers: { Authorization: 'Bearer ' + `${token}` },
+               }
+            )
+            .then((response) => {
+               window.alert('게시물이 삭제되었습니다.');
+               window.location.reload();
+            })
+            .catch(function (error) {
+               console.log(error.response.data.msg);
+            });
+      }
    };
-
 
    return (
       <>
@@ -110,8 +109,7 @@ const PostList = () => {
                               icon={faTrash}
                               style={{ margin: 3 }}
                               onClick={() => {
-                                 deletePostedAxios(index)
-            
+                                 deletePostedAxios(index);
                               }}
                            />
                         </ButtonBox>
