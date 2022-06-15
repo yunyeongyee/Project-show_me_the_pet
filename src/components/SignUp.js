@@ -67,30 +67,6 @@ const SignUp = () => {
     }
   }
 
-  const signupDB = () => {
-    
-
-    const signup_list = {
-      userId : userid_ref.current.value,
-      password : password_ref.current.value,
-      confirmPassword : confirmPassword_ref.current.value,
-      name : name_ref.current.value,
-      checkId : id_check,
-      checkName : name_check
-    }
-
-    console.log(signup_list);
-
-    axios.post("http://15.164.164.17/api/users", signup_list)
-    .then(response => {
-      const msg = response.data.msg
-      alert(msg);
-      navigate("/");
-  })
-  .catch(error => {
-    alert(error.response.data.msg);
-  });
-  } 
 
   const checkID = () => {
     const check_id = {
@@ -134,6 +110,37 @@ const SignUp = () => {
       }
     })
   }
+
+  const signupDB = () => {
+    
+
+    const signup_list = {
+      userId : userid_ref.current.value,
+      password : password_ref.current.value,
+      confirmPassword : confirmPassword_ref.current.value,
+      name : name_ref.current.value,
+    }
+
+    if (!id_check) {
+      alert("이메일 중복확인 검사를 하지 않았습니다.");
+      return;
+    }
+
+    if(!name_check) {
+      alert("닉네임 중복확인 검사를 하지 않았습니다.");
+      return;
+    }
+
+    axios.post("http://15.164.164.17/api/users", signup_list)
+    .then(response => {
+      const msg = response.data.msg
+      alert(msg);
+      navigate("/");
+  })
+  .catch(error => {
+    alert(error.response.data.msg);
+  });
+  } 
 
   return (
      <>
@@ -183,7 +190,7 @@ margin-top:1px;
 `
 
 let SignUp_wrap = styled.div`
-margin:0 auto;
+margin:150px auto;
 width:500px;
 height:550px;
 padding:20px;
