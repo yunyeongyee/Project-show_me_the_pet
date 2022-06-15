@@ -11,22 +11,10 @@ import { faHeart, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const PostList = () => {
-
    const token = localStorage.getItem("login-token");
-
    const title = useState();
    const content = useState();
    const [list, setList] = useState([]); 
-
-   
-   // const handleDelete = (id) => {
-   //    const willDeletePost = list.filter(onePosted => onePosted.id !== id);
-   //    setList(willDeletePost);
-   //    console.log(willDeletePost);
-   // }
-
-   
-
    
    React.useEffect(()=> {
       getPostListAxios();
@@ -37,10 +25,8 @@ const PostList = () => {
    const getPostListAxios = () => {
       axios.get('http://15.164.164.17/api/boards').then((response) => {
          setList([...response.data.boards]);
-
          // console.log('response?', response.data.boards);
       });  
-
    // .catch(function (error) {
    //    console.log(error.response.data.errorMessage);
    // });
