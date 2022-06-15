@@ -2,52 +2,78 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { useNavigate } from 'react-router-dom';
 /*COMPONENTS*/
 import UploadBtn from './UploadBtn';
-
+import Modal from './Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const PostList = () => {
 
-   const token = localStorage.getItem("login-token");
-   const [likes, setLikes] = React.useState(false);
+const PostList = () => {
+   const navigate = useNavigate();
+   const token = localStorage.getItem('login-token');
+   const [postedList, setPostedList] = useState([]);
    const title = useState();
    const content = useState();
-   const [postedList, setPostedList] = useState([]); 
 
+   const [likes, setLikes] = useState(false);
+   const [modal, setModal] = useState(false);
 
-   React.useEffect(()=> {
+   const clickModal = () => {
+      setModal(!modal);
+      // navigate('/post/' + postedList.postid);
+   };
+   React.useEffect(() => {
       getPostListAxios();
       deletePostedAxios();
-
    }, []);
 
-// GET POSTED 
+   // GET POSTED
    const getPostListAxios = () => {
       axios.get('http://15.164.164.17/api/boards').then((response) => {
          setPostedList([...response.data.boards]);
          // console.log('response?', response.data.boards);
-      });  
-   // .catch(function (error) {
-   //    console.log(error.response.data.errorMessage);
-   // });
+      });
+      // .catch(function (error) {
+      //    console.log(error.response.data.errorMessage);
+      // });
    };
+   // EDIT POSTED
+   // const deletePostedAxios = () => {
+   //    axios
+   //       .delete(
+   //          'http://15.164.164.17/api/boards/:boardId' + postedList.boardId,
+   //          {
+   //             headers: { Authorization: 'Bearer ' + `${token}` },
+   //          }
+   //       )
+   //       .then((response) => {
+   //          console.log(response);
+   //       });
+   // };
 
-// DELETE POSTED
-const deletePostedAxios = () => {
-      axios.delete('http://15.164.164.17/api/boards/:boardId').then((response) => {
-         const willDeletePost = postedList.filter(
-            (onePosted) => onePosted.id !== response.data.boards.boardId
-         );
-         setPostedList(willDeletePost);
-         console.log("willDeletePost?", response.data.boards.boardId);
-      }); 
-}
- 
+   // DELETE POSTED
+   // const deletePostedAxios = () => {
+   // axios
+   //    .delete(`http://15.164.164.17/api/boards/${boardId}`, {
+   //       headers: { Authorization: 'Bearer ' + `${token}` },
+   //    })
+   //    .then((response) => {
+   //       console.log(boardId);
+   //    });
+   // };
+   const deletePostedAxios = () => {
+   axios
+      .delete('http://15.164.164.17/api/boards/14' + postedList.boardId, {
+         headers: { Authorization: 'Bearer ' + `${token}` },
+      })
 
+      // .catch(function (error) {
+      //  console.log(error.response.data.msg);
+      // });
+   };
 
 
    return (
@@ -72,21 +98,20 @@ const deletePostedAxios = () => {
                                     setLikes(true);
                                  }}
                                  icon={faHeart}
-                                 style={{ margin: 3, backgroundColor: '#000' }}
+                                 style={{ margin: 3 }}
                               />
                            )}
                            <FontAwesomeIcon
                               icon={faPenToSquare}
                               style={{ margin: 3 }}
-                              onClick={() => {
-                                 // navigate('/post/' + postedList.postid);
-                              }}
+                              onClick={clickModal}
                            />
                            <FontAwesomeIcon
                               icon={faTrash}
                               style={{ margin: 3 }}
                               onClick={() => {
                                  deletePostedAxios(postedList.id);
+                                 navigate('/');
                                  window.alert('게시물이 삭제되었습니다.');
                               }}
                            />
