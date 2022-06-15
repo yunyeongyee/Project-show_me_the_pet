@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 /*COMPONENTS*/
 import UploadBtn from './UploadBtn';
-import Modal from './Modal';
+import EditPost from './EditPost';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -18,11 +18,10 @@ const PostList = () => {
    const title = useState();
    const content = useState();
    const [likes, setLikes] = useState(false);
-   const [modal, setModal] = useState(false);
-   const clickModal = () => {
-      setModal(!modal);
-      // navigate('/post/' + postedList.postid);
-   };
+  const [modalOpen, setModalOpen] = useState(false);
+
+
+
    React.useEffect(() => {
       getPostListAxios();
       deletePostedAxios();
@@ -104,14 +103,16 @@ const PostList = () => {
                            <FontAwesomeIcon
                               icon={faPenToSquare}
                               style={{ margin: 3 }}
-                              onClick={clickModal}
+                              onClick={() => {
+                                 setModalOpen(true);
+                              }}
                            />
+                           {modalOpen && <EditPost setOpenModal={setModalOpen} />}
                            <FontAwesomeIcon
                               icon={faTrash}
                               style={{ margin: 3 }}
                               onClick={() => {
-                                 deletePostedAxios(index)
-            
+                                 deletePostedAxios(index);
                               }}
                            />
                         </ButtonBox>
