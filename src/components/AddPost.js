@@ -36,7 +36,8 @@ const AddPost = () => {
       }
     })
        .then(function (response) {
-          navigate('/');
+         window.alert('게시물이 등록되었습니다.');
+         navigate('/');
        })
        .catch(function (error) {
         const msg = error.response.data.errorMessage;
