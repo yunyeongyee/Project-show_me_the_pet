@@ -38,7 +38,7 @@ const PostList = () => {
          // console.log('response?', response.data.boards);
       });
       // .catch(function (error) {
-      //    console.log(error.response.data.errorMessage);
+      //    console.log(error.response.data.,msg);
       // });
    };
    // EDIT POSTED
