@@ -42,7 +42,7 @@ const SignUp = () => {
       set_pw_msg("");
       set_check_pw(pw);
     } else if (pw.length < 4) {
-      set_pw_msg("비밀번호는 4자 이상");
+      set_pw_msg("비밀번호는 4자 이상이어야 합니다.");
     } 
   }
 
