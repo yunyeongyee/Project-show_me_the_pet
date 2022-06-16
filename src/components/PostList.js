@@ -72,13 +72,12 @@ const PostList = () => {
                }
             )
             .then((response) => {
-              
-               // console.log("response => ",response);
-              //  window.location.reload();
+            
                if (response.data.msg === "본인만 삭제 가능합니다.") {
                 window.alert(response.data.msg);
                } else {
-                window.location.reload();
+               window.alert('게시물이 삭제되었습니다.');
+               window.location.reload();
                }
             })
             .catch(function (error) {
@@ -165,8 +164,11 @@ const Container = styled.div`
    top: 100px;
 `;
 const Card = styled.div`
-  max-width: 350px;
+   max-width: 350px;
    width: 95%;
+   max-height: 700px;
+   overflow-y: hidden;
+   object-fit: cover;
    padding: 1em;
    margin: 1em;
    border: 1px solid whitesmoke;
@@ -201,6 +203,8 @@ const Img = styled.img`
    right: 27px;
    justify-content: center;
    align-items: center;
+}
+
 `;
 const WhoPosted = styled.p`
    position: relative;

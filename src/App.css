@@ -40,7 +40,6 @@ h4 {
 }
 
 .HeaderTitle:hover,
-   :active,
    :focus {
     color: #EA9CC3;
     cursor: pointer;

@@ -56,7 +56,7 @@ const AddPost = () => {
        .catch(function (error) {
         const msg = error.response.data.msg;
         console.log(error);
-          alert(msg);
+          alert('양식을 모두 채워주세요.');
        });
  };
  
