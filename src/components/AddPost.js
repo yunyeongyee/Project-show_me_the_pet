@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -14,15 +14,6 @@ const AddPost = () => {
    const file_link = React.useRef(null);
 
  
-   const timeStamp = new Date();
-   const timePosted =
-      timeStamp.toDateString() +
-      ' (' +
-      timeStamp.getHours() +
-      ':' +
-      timeStamp.getMinutes() +
-      ' )';
-
   const addPostAxios = () => {
     console.log('localStorage', localStorage.getItem('login-token'));
     axios({
@@ -89,6 +80,7 @@ const AddPost = () => {
       </>
    );
 };
+
 const Container = styled.div`
    display: flex;
    width: 100vw;
@@ -100,6 +92,7 @@ const Container = styled.div`
    margin: 20px auto;
    padding: 20px auto;
 `;
+
 const Card = styled.div`
    max-width: 350px;
    width: 95%;
@@ -118,9 +111,11 @@ const Card = styled.div`
       cursor: pointer;
    }
 `;
+
 const Form = styled.div`
    margin: 20px auto;
 `;
+
 const ButtonUpload = styled.button`
    display: flex;
    flex-direction: column;
@@ -147,16 +142,6 @@ const ButtonUpload = styled.button`
       background-color: #ea9cc3;
       border: 1px solid #ea9cc3;
    }
-`;
-const TimePosted = styled.div`
-   display: inline;
-   width: 190px;
-   position: relative;
-   bottom: 10px;
-   justify-content: center;
-   font-size: 13px;
-   color: #ea9cc3;
-   text-align: center;
 `;
 
 const Title = styled.p`

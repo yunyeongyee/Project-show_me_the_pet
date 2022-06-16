@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 /*COMPONENTS*/
 import UploadBtn from './UploadBtn';
-import Modal from './Modal';
+import EditPost from './EditPost';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -15,14 +15,30 @@ const PostList = () => {
    const navigate = useNavigate();
    const token = localStorage.getItem('login-token');
    const [postedList, setPostedList] = useState([]);
+   const [boardId, setBoardId] = useState(null);
    const title = useState();
    const content = useState();
    const [likes, setLikes] = useState(false);
-   const [modal, setModal] = useState(false);
-   const clickModal = () => {
-      setModal(!modal);
-      // navigate('/post/' + postedList.postid);
-   };
+   const [modalOpen, setModalOpen] = useState(false);
+
+   // const getBoardId = (index) => {
+   //    if (postedList.length > 0) {
+   //       axios
+   //          .delete(
+   //             'http://15.164.164.17/api/boards/' + postedList[index]?.boardId,
+   //             {
+   //                headers: { Authorization: 'Bearer ' + `${token}` },
+   //             }
+   //          )
+   //          .then((response) => {
+   //             window.alert('게시물이 삭제되었습니다.');
+   //             window.location.reload();
+   //          })
+   //          .catch(function (error) {
+   //             console.log(error.response.data.msg);
+   //          });
+   //    }
+   // };
    React.useEffect(() => {
       getPostListAxios();
       deletePostedAxios();
@@ -38,26 +54,13 @@ const PostList = () => {
       //    console.log(error.response.data.,msg);
       // });
    };
-   
-   // EDIT POSTED
-   // const deletePostedAxios = () => {
-   //    axios
-   //       .delete(
-   //          'http://15.164.164.17/api/boards/:boardId' + postedList.boardId,
-   //          {
-   //             headers: { Authorization: 'Bearer ' + `${token}` },
-   //          }
-   //       )
-   //       .then((response) => {
-   //          console.log(response);
-   //       });
-   // };
 
    // DELETE POSTED
    const deletePostedAxios = (index) => {
       // console.log( postedList)
       // console.log( postedList[ index ])
       if (postedList.length > 0) {
+               console.log(postedList[index]?.boardId);
          axios
             .delete(
                'http://15.164.164.17/api/boards/' + postedList[index]?.boardId,
@@ -74,6 +77,10 @@ const PostList = () => {
             });
       }
    };
+   function ModalOpenFunc(index) {
+      console.log(index)
+      setModalOpen(true);
+   }
 
    return (
       <>
@@ -103,8 +110,11 @@ const PostList = () => {
                            <FontAwesomeIcon
                               icon={faPenToSquare}
                               style={{ margin: 3 }}
-                              onClick={clickModal}
+                              onClick={() => {
+                                 ModalOpenFunc(index)
+                              }}
                            />
+
                            <FontAwesomeIcon
                               icon={faTrash}
                               style={{ margin: 3 }}
@@ -118,14 +128,16 @@ const PostList = () => {
                      <Form>
                         <Title>{postedList[index].title}</Title>
                         <Time>Posted: 2022-06-11</Time>
-                        <Img src={postedList[index].img}></Img>
+                        <Img src={postedList[index].imgUrl}></Img>
                         <WhoPosted>{postedList[index].name}</WhoPosted>
                         <Content>{postedList[index].content}</Content>
                      </Form>
                   </Card>
                );
             })}
+            {modalOpen && <EditPost setOpenModal={setModalOpen} />}
          </Container>
+
          {token ? <UploadBtn /> : null}
       </>
    );
