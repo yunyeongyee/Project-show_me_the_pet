@@ -18,7 +18,7 @@ export function loadPost(post_list) {
 
 
 /*REDUCER*/
-export default function reducers(state = [], action) {
+export default function reducers(state = initialState, action) {
    switch (action.type) {
       case 'post/LOAD':
       return { list: action.post_list}

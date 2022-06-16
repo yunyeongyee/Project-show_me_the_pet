@@ -6,84 +6,63 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector } from 'react-redux';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { post, loadPost } from './../redux/modules/post';
-
-
 function EditPost({ setOpenModal }) {
-
-
    const navigate = useNavigate();
    const title = React.useRef(null);
    const content = React.useRef(null);
    const [postedList, setPostedList] = useState([]);
-   const listData = useSelector((state) => state.post.list); 
+   const listData = useSelector((state) => state.post.list);
    const token = localStorage.getItem('login-token');
    const [getTitle, setGetTitle] = useState(null);
    const [getContent, setGetContent] = useState(null);
    const [imageSrc, setImageSrc] = useState('');
    const img = React.useRef(null);
    const file_link = React.useRef(null);
-
+   const myBoardId = useSelector((state) => state.user);
    React.useEffect(() => {
       getPostListAxios();
    }, []);
-
-
    // GET POSTED
-   const getPostListAxios = (index) => {
-      if (postedList.length > 0)
-         {
-            axios
-               .get(
-                  'http://15.164.164.17/api/boards/' +
-                     postedList[index]?.boardId,
-                  {
-                     headers: { Authorization: 'Bearer ' + `${token}` },
-                  }
-               )
-               .then((response) => {
-                    setPostedList([...response.data.boards]);
-                    const newTitle = response.data.boards[index].title;
-                    const newContent = response.data.boards[index].content;
-
-                    setGetTitle(newTitle);
-                    setGetContent(newContent);
-                    console.log('response?', getTitle, getContent);
-               })
-               .catch(function (error) {
-                  console.log(error.response.data.msg);
-               });
-         }
+   const getPostListAxios = () => {
+      axios
+         .get('http://15.164.164.17/api/boards/' + myBoardId, {
+            headers: { Authorization: 'Bearer ' + `${token}` },
+         })
+         .then((response) => {
+            console.log('response => ', response);
+            const newTitle = response.data.detail.title;
+            const newContent = response.data.detail.content;
+            setGetTitle(newTitle);
+            setGetContent(newContent);
+            console.log('response?', getTitle, getContent);
+         })
+         .catch(function (error) {
+            alert(error.response.data.msg);
+         });
    };
-
- 
-
    // PUT POSTED
    const putPostListAxios = (index) => {
-    console.log("listData?", listData);
-   if (postedList.length > 0) {
-    axios({
-       method: 'put',
-       url: 'http://15.164.164.17/api/boards/' + postedList[index]?.boardId,
-       headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + localStorage.getItem('login-token'),
-       },
-       data: {
-          title: title.current?.value,
-          content: content.current.value,
-       },
-    })
-       .then((response) => {
-          window.alert('게시물이 수정되었습니다.');
-          navigate('/');
-       })
-       .catch((err) => {
-          window.alert('게시물이 수정되지않았습니다.');
-       });
-   }
+      console.log('listData?', listData);
+      axios({
+         method: 'put',
+         url: 'http://15.164.164.17/api/boards/' + myBoardId,
+         headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('login-token'),
+         },
+         data: {
+            title: title.current?.value,
+            content: content.current.value,
+         },
+      })
+         .then((response) => {
+            window.alert('게시물이 수정되었습니다.');
+            window.location.replace('/');
+         })
+         .catch((err) => {
+            window.alert('게시물이 수정되지않았습니다.');
+         });
    };
-
-       
    return (
       <ModalBackground>
          <ModalCard>
@@ -114,7 +93,6 @@ function EditPost({ setOpenModal }) {
                   }}
                />
                <br />
-
                <SubTitle>Choose Image</SubTitle>
                <Label className="input-file-button" htmlFor="input-file">
                   <InputFile type="file" id="input-file" />
@@ -179,7 +157,6 @@ const ModalBackground = styled.div`
 //          opacity: 1;
 //       }
 //    }
-
 const ModalCard = styled.div`
    max-width: 300px;
    position: relative;
@@ -195,12 +172,10 @@ const ModalCard = styled.div`
       0 8px 16px -8px hsla(0, 0%, 0%, 0.3),
       0 -6px 16px -6px hsla(0, 0%, 0%, 0.03);
 `;
-
 const TitleCloseBtnBox = styled.div`
    display: flex;
    justify-content: flex-end;
 `;
-
 const Body = styled.div`
    margin: 10px auto;
    align-items: center;
@@ -211,18 +186,15 @@ const Title = styled.p`
    margin: 3px auto;
    line-height: 5px;
 `;
-
 const SubTitle = styled.span`
    line-height: 5px;
 `;
-
 const SubTitle2 = styled.p`
    position: relative;
    top: 10px;
    margin: 10px 0;
    line-height: 5px;
 `;
-
 const Input = styled.input`
    position: relative;
    bottom: 10px;
@@ -243,7 +215,6 @@ const Input = styled.input`
       outline-color: #edb6d1;
    }
 `;
-
 const InputFile = styled.input`
    display: none;
    width: 100px;
@@ -253,7 +224,6 @@ const InputFile = styled.input`
    border: none;
    border-bottom: 1px solid #282c34;
 `;
-
 const Label = styled.label`
    margin: auto 5px;
    padding: 2px 4px;
@@ -262,11 +232,9 @@ const Label = styled.label`
    border: 1px solid #e0e0e0;
    border-radius: 5px;
 `;
-
 const Preview = styled.div`
    width: 300px;
 `;
-
 const Textarea = styled.textarea`
    position: relative;
    top: 10px;
@@ -287,14 +255,12 @@ const Textarea = styled.textarea`
       outline-color: #edb6d1;
    }
 `;
-
 const Footer = styled.div`
    flex: 20%;
    display: flex;
    justify-content: center;
    align-items: center;
 `;
-
 const ContinueBtn = styled.button`
    display: flex;
    flex-direction: column;
@@ -321,7 +287,6 @@ const ContinueBtn = styled.button`
       border: 1px solid #ea9cc3;
    }
 `;
-
 const CancelBtn = styled.button`
    display: flex;
    flex-direction: column;
@@ -348,5 +313,4 @@ const CancelBtn = styled.button`
       border: 1px solid #ea9cc3;
    }
 `;
-
 export default EditPost;

@@ -3,16 +3,16 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { loadboardID } from '../redux/modules/user';
 /*COMPONENTS*/
 import UploadBtn from './UploadBtn';
 import EditPost from './EditPost';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-
-
 const PostList = () => {
    const navigate = useNavigate();
+   const dispatch = useDispatch();
    const token = localStorage.getItem('login-token');
    const [postedList, setPostedList] = useState([]);
    const [boardId, setBoardId] = useState(null);
@@ -20,7 +20,6 @@ const PostList = () => {
    const content = useState();
    const [likes, setLikes] = useState(false);
    const [modalOpen, setModalOpen] = useState(false);
-
    // const getBoardId = (index) => {
    //    if (postedList.length > 0) {
    //       axios
@@ -43,7 +42,8 @@ const PostList = () => {
       getPostListAxios();
       deletePostedAxios();
    }, []);
-
+   const myBoardId = useSelector((state) => state.user);
+   console.log('post list 컴포넌트의 myBoardId 콘솔 = > ', myBoardId);
    // GET POSTED
    const getPostListAxios = () => {
       axios.get('http://15.164.164.17/api/boards').then((response) => {
@@ -54,13 +54,12 @@ const PostList = () => {
       //    console.log(error.response.data.,msg);
       // });
    };
-
    // DELETE POSTED
    const deletePostedAxios = (index) => {
       // console.log( postedList)
       // console.log( postedList[ index ])
       if (postedList.length > 0) {
-               console.log(postedList[index]?.boardId);
+         console.log(postedList[index]?.boardId);
          axios
             .delete(
                'http://15.164.164.17/api/boards/' + postedList[index]?.boardId,
@@ -78,10 +77,10 @@ const PostList = () => {
       }
    };
    function ModalOpenFunc(index) {
-      console.log(index)
+      const id = postedList[index].boardId;
       setModalOpen(true);
+      dispatch(loadboardID(id));
    }
-
    return (
       <>
          <Container>
@@ -111,10 +110,9 @@ const PostList = () => {
                               icon={faPenToSquare}
                               style={{ margin: 3 }}
                               onClick={() => {
-                                 ModalOpenFunc(index)
+                                 ModalOpenFunc(index);
                               }}
                            />
-
                            <FontAwesomeIcon
                               icon={faTrash}
                               style={{ margin: 3 }}
@@ -124,7 +122,6 @@ const PostList = () => {
                            />
                         </ButtonBox>
                      ) : null}
-
                      <Form>
                         <Title>{postedList[index].title}</Title>
                         <Time>Posted: 2022-06-11</Time>
@@ -137,11 +134,10 @@ const PostList = () => {
             })}
             {modalOpen && <EditPost setOpenModal={setModalOpen} />}
          </Container>
-
          {token ? <UploadBtn /> : null}
       </>
    );
-}
+};
 const Container = styled.div`
    display: grid;
    grid-template-columns: repeat(auto-fit, 420px);
@@ -159,14 +155,14 @@ const Card = styled.div`
    width: 95%;
    padding: 1em;
    margin: 1em;
-   border: 1px solid #transparent;
+   border: 1px solid whitesmoke;
    border-radius: 5px;
-   background: transparent;
+   background: whitesmoke;
    box-shadow: 0 13px 27px -5px hsla(240, 30.1%, 28%, 0.25),
       0 8px 16px -8px hsla(0, 0%, 0%, 0.3),
       0 -6px 16px -6px hsla(0, 0%, 0%, 0.03);
 `;
- const Form = styled.div`
+const Form = styled.div`
    display: flex;
    flex-direction: column;
    justify-content: center;
