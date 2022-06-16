@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { loadboardID } from '../redux/modules/user';
 /*COMPONENTS*/
 import UploadBtn from './UploadBtn';
 import EditPost from './EditPost';
@@ -13,6 +14,8 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const PostList = () => {
    const navigate = useNavigate();
+   const dispatch = useDispatch();
+
    const token = localStorage.getItem('login-token');
    const [postedList, setPostedList] = useState([]);
    const [boardId, setBoardId] = useState(null);
@@ -44,6 +47,9 @@ const PostList = () => {
       deletePostedAxios();
    }, []);
 
+   const myBoardId = useSelector((state) => state.user);
+   console.log("post list 컴포넌트의 myBoardId 콘솔 = > ", myBoardId)
+
    // GET POSTED
    const getPostListAxios = () => {
       axios.get('http://15.164.164.17/api/boards').then((response) => {
@@ -69,17 +75,26 @@ const PostList = () => {
                }
             )
             .then((response) => {
-               window.alert('게시물이 삭제되었습니다.');
-               window.location.reload();
+              
+               // console.log("response => ",response);
+              //  window.location.reload();
+               if (response.data.msg === "본인만 삭제 가능합니다.") {
+                window.alert(response.data.msg);
+               } else {
+                window.location.reload();
+               }
             })
             .catch(function (error) {
+              console.log("error=> ", error)
                console.log(error.response.data.msg);
             });
       }
    };
    function ModalOpenFunc(index) {
-      console.log(index)
+      const id = postedList[index].boardId;
       setModalOpen(true);
+      dispatch(loadboardID(id));
+      
    }
 
    return (
