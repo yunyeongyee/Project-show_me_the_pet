@@ -73,8 +73,8 @@ function EditPost({ setOpenModal }) {
             if (response.data.msg === "본인만 수정 가능합니다.") {
               alert(response.data.msg) 
             } else {
-              alert(response.data.msg) 
-               window.location.replace('/');
+              alert("게시물이 수정되었습니다.") 
+              window.location.replace('/');
             }
          })
          .catch((err) => {
