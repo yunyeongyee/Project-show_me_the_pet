@@ -12,6 +12,7 @@ const AddPost = () => {
    const [imageSrc, setImageSrc] = useState('');
    const img = React.useRef(null);
    const file_link = React.useRef(null);
+   const [imgFile, setImgFile] = React.useState(null);
 
  
    const timeStamp = new Date();
@@ -23,17 +24,29 @@ const AddPost = () => {
       timeStamp.getMinutes() +
       ' )';
 
+  const selectFile = (e) => {
+    console.log(e.target.files[0]);
+    setImgFile(e.target.files[0]);
+  }
+
+
   const addPostAxios = () => {
+    const formData = new FormData();
+    formData.append("imgUrl", imgFile);
+    formData.append("title", title.current?.value);
+    formData.append("content",content.current.value);
+
+
+    console.log("data => ", formData);
+
+
     console.log('localStorage', localStorage.getItem('login-token'));
     axios({
       method: "post",
       url: 'http://15.164.164.17/api/boards',
-      headers: {"Content-Type": "application/json",
+      headers: {"Content-Type": "multipart/form-data",
       Authorization: "Bearer " + localStorage.getItem('login-token')},
-      data: {
-        title: title.current?.value,
-        content: content.current.value,
-      }
+      data: formData
     })
        .then(function (response) {
          window.alert('게시물이 등록되었습니다.');
@@ -41,6 +54,7 @@ const AddPost = () => {
        })
        .catch(function (error) {
         const msg = error.response.data.errorMessage;
+        console.log(error);
           alert(msg);
        });
  };
@@ -64,7 +78,7 @@ const AddPost = () => {
 
                   <SubTitle>Choose Image</SubTitle>
                   <Label className="input-file-button" htmlFor="input-file">
-                     <InputFile type="file" id="input-file" />
+                     <InputFile type="file" id="input-file" onChange={selectFile} />
                      사진선택
                   </Label>
                   <Preview>
