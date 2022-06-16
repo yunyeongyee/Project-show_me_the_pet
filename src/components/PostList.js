@@ -151,7 +151,7 @@ const Container = styled.div`
    top: 100px;
 `;
 const Card = styled.div`
-   max-width: 350px;
+  max-width: 350px;
    width: 95%;
    padding: 1em;
    margin: 1em;
