@@ -15,13 +15,30 @@ const PostList = () => {
    const navigate = useNavigate();
    const token = localStorage.getItem('login-token');
    const [postedList, setPostedList] = useState([]);
+   const [boardId, setBoardId] = useState(null);
    const title = useState();
    const content = useState();
    const [likes, setLikes] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
+   const [modalOpen, setModalOpen] = useState(false);
 
-
-
+   // const getBoardId = (index) => {
+   //    if (postedList.length > 0) {
+   //       axios
+   //          .delete(
+   //             'http://15.164.164.17/api/boards/' + postedList[index]?.boardId,
+   //             {
+   //                headers: { Authorization: 'Bearer ' + `${token}` },
+   //             }
+   //          )
+   //          .then((response) => {
+   //             window.alert('게시물이 삭제되었습니다.');
+   //             window.location.reload();
+   //          })
+   //          .catch(function (error) {
+   //             console.log(error.response.data.msg);
+   //          });
+   //    }
+   // };
    React.useEffect(() => {
       getPostListAxios();
       deletePostedAxios();
@@ -37,43 +54,33 @@ const PostList = () => {
       //    console.log(error.response.data.,msg);
       // });
    };
-   // EDIT POSTED
-   // const deletePostedAxios = () => {
-   //    axios
-   //       .delete(
-   //          'http://15.164.164.17/api/boards/:boardId' + postedList.boardId,
-   //          {
-   //             headers: { Authorization: 'Bearer ' + `${token}` },
-   //          }
-   //       )
-   //       .then((response) => {
-   //          console.log(response);
-   //       });
-   // };
-
+   // DELETE POSTED
    const deletePostedAxios = (index) => {
       // console.log( postedList)
       // console.log( postedList[ index ])
-      if (postedList.length > 0)
-         {
-            axios
-               .delete(
-                  'http://15.164.164.17/api/boards/' +
-                     postedList[index]?.boardId,
-                  {
-                     headers: { Authorization: 'Bearer ' + `${token}` },
-                  }
-               )
-               .then((response) => {
-                  window.alert('게시물이 삭제되었습니다.');
-                  window.location.reload();
-               })
-               .catch(function (error) {
-                  console.log(error.response.data.msg);
-               });
-         }
-   };
 
+      if (postedList.length > 0) {
+               console.log(postedList[index]?.boardId);
+         axios
+            .delete(
+               'http://15.164.164.17/api/boards/' + postedList[index]?.boardId,
+               {
+                  headers: { Authorization: 'Bearer ' + `${token}` },
+               }
+            )
+            .then((response) => {
+               window.alert('게시물이 삭제되었습니다.');
+               window.location.reload();
+            })
+            .catch(function (error) {
+               console.log(error.response.data.msg);
+            });
+      }
+   };
+   function ModalOpenFunc(index) {
+      console.log(index)
+      setModalOpen(true);
+   }
 
    return (
       <>
@@ -104,7 +111,7 @@ const PostList = () => {
                               icon={faPenToSquare}
                               style={{ margin: 3 }}
                               onClick={() => {
-                                 setModalOpen(true);
+                                 ModalOpenFunc(index)
                               }}
                            />
 

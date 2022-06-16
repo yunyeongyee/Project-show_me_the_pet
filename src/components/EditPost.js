@@ -1,14 +1,89 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSelector } from 'react-redux';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { post, loadPost } from './../redux/modules/post';
+
 
 function EditPost({ setOpenModal }) {
+
+
+   const navigate = useNavigate();
    const title = React.useRef(null);
    const content = React.useRef(null);
+   const [postedList, setPostedList] = useState([]);
+   const listData = useSelector((state) => state.post.list); 
+   const token = localStorage.getItem('login-token');
+   const [getTitle, setGetTitle] = useState(null);
+   const [getContent, setGetContent] = useState(null);
    const [imageSrc, setImageSrc] = useState('');
    const img = React.useRef(null);
    const file_link = React.useRef(null);
+
+   React.useEffect(() => {
+      getPostListAxios();
+   }, []);
+
+
+   // GET POSTED
+   const getPostListAxios = (index) => {
+      if (postedList.length > 0)
+         {
+            axios
+               .get(
+                  'http://15.164.164.17/api/boards/' +
+                     postedList[index]?.boardId,
+                  {
+                     headers: { Authorization: 'Bearer ' + `${token}` },
+                  }
+               )
+               .then((response) => {
+                    setPostedList([...response.data.boards]);
+                    const newTitle = response.data.boards[index].title;
+                    const newContent = response.data.boards[index].content;
+
+                    setGetTitle(newTitle);
+                    setGetContent(newContent);
+                    console.log('response?', getTitle, getContent);
+               })
+               .catch(function (error) {
+                  console.log(error.response.data.msg);
+               });
+         }
+   };
+
+ 
+
+   // PUT POSTED
+   const putPostListAxios = (index) => {
+    console.log("listData?", listData);
+   if (postedList.length > 0) {
+    axios({
+       method: 'put',
+       url: 'http://15.164.164.17/api/boards/' + postedList[index]?.boardId,
+       headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + localStorage.getItem('login-token'),
+       },
+       data: {
+          title: title.current?.value,
+          content: content.current.value,
+       },
+    })
+       .then((response) => {
+          window.alert('게시물이 수정되었습니다.');
+          navigate('/');
+       })
+       .catch((err) => {
+          window.alert('게시물이 수정되지않았습니다.');
+       });
+   }
+   };
+
+       
    return (
       <ModalBackground>
          <ModalCard>
@@ -33,6 +108,10 @@ function EditPost({ setOpenModal }) {
                <Input
                   ref={title}
                   type="text"
+                  value={getTitle}
+                  onChange={(event) => {
+                     setGetTitle(event.target.value);
+                  }}
                />
                <br />
 
@@ -55,10 +134,14 @@ function EditPost({ setOpenModal }) {
                <Textarea
                   ref={content}
                   type="text"
+                  value={getContent}
+                  onChange={(e) => {
+                     setGetContent(e.target.value);
+                  }}
                />
             </Body>
             <Footer>
-               <ContinueBtn>Edit</ContinueBtn>
+               <ContinueBtn onClick={putPostListAxios}>Edit</ContinueBtn>
                <CancelBtn
                   onClick={() => {
                      setOpenModal(false);
