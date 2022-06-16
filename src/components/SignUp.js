@@ -135,7 +135,7 @@ const SignUp = () => {
     .then(response => {
       const msg = response.data.msg
       alert(msg);
-      navigate("/");
+      navigate("/Login");
   })
   .catch(error => {
     alert(error.response.data.msg);
