@@ -128,7 +128,7 @@ const PostList = () => {
                      <Form>
                         <Title>{postedList[index].title}</Title>
                         <Time>Posted: 2022-06-11</Time>
-                        <Img src={postedList[index].img}></Img>
+                        <Img src={postedList[index].imgUrl}></Img>
                         <WhoPosted>{postedList[index].name}</WhoPosted>
                         <Content>{postedList[index].content}</Content>
                      </Form>
