@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -15,8 +15,7 @@ const AddPost = () => {
    const [imgFile, setImgFile] = React.useState(null);
 
  
-<<<<<<< HEAD
-=======
+
    const timeStamp = new Date();
    const timePosted =
       timeStamp.toDateString() +
@@ -32,14 +31,13 @@ const AddPost = () => {
   }
 
 
->>>>>>> gayeon
+
   const addPostAxios = () => {
     const formData = new FormData();
     formData.append("imgUrl", imgFile);
     formData.append("title", title.current?.value);
     formData.append("content",content.current.value);
-
-
+  
     console.log("data => ", formData);
 
 
@@ -106,7 +104,6 @@ const AddPost = () => {
       </>
    );
 };
-
 const Container = styled.div`
    display: flex;
    width: 100vw;
@@ -118,7 +115,6 @@ const Container = styled.div`
    margin: 20px auto;
    padding: 20px auto;
 `;
-
 const Card = styled.div`
    max-width: 350px;
    width: 95%;
@@ -137,11 +133,9 @@ const Card = styled.div`
       cursor: pointer;
    }
 `;
-
 const Form = styled.div`
    margin: 20px auto;
 `;
-
 const ButtonUpload = styled.button`
    display: flex;
    flex-direction: column;
@@ -168,6 +162,16 @@ const ButtonUpload = styled.button`
       background-color: #ea9cc3;
       border: 1px solid #ea9cc3;
    }
+`;
+const TimePosted = styled.div`
+   display: inline;
+   width: 190px;
+   position: relative;
+   bottom: 10px;
+   justify-content: center;
+   font-size: 13px;
+   color: #ea9cc3;
+   text-align: center;
 `;
 
 const Title = styled.p`
