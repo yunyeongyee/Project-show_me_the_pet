@@ -1,19 +1,16 @@
 const LOAD = 'user/LOAD';
 
-const initialState = {
-  list: [],
+const boardIdState = 0;
+
+export const loadboardID = (id) => {
+  return {type:LOAD, id};
 };
 
-
-
-
-export default function reducer(state=initialState, action={}) {
+export default function reducer(state=boardIdState, action={}) {
   switch (action.type) {
     case "user/LOAD": {
-      return {list: action.post_collection};
-
+      return action.id;
     }
-    
     default:
       return state;
   }
