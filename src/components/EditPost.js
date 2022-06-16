@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector } from 'react-redux';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { post, loadPost } from './../redux/modules/post';
+
+import { createPortal } from 'react-dom';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 function EditPost({ setOpenModal }) {
    const navigate = useNavigate();
    const title = React.useRef(null);
@@ -19,8 +22,19 @@ function EditPost({ setOpenModal }) {
    const img = React.useRef(null);
    const file_link = React.useRef(null);
    const myBoardId = useSelector((state) => state.user);
+
    React.useEffect(() => {
       getPostListAxios();
+       document.body.style.cssText = `
+    position: fixed;
+    top: -${window.scrollY}px;
+    overflow-y: scroll;
+    width: 100%;`;
+     return () => {
+        const scrollY = document.body.style.top ;
+        document.body.style.cssText = '';
+        window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+     };
    }, []);
    // GET POSTED
    const getPostListAxios = () => {
@@ -56,14 +70,21 @@ function EditPost({ setOpenModal }) {
          },
       })
          .then((response) => {
-            window.alert('게시물이 수정되었습니다.');
-            window.location.replace('/');
+            if (response.data.msg === "본인만 수정 가능합니다.") {
+              alert("response.data.msg") 
+            } else {
+              alert("response.data.msg") 
+              window.location.replace('/');
+            }
          })
          .catch((err) => {
             window.alert('게시물이 수정되지않았습니다.');
          });
    };
-   return (
+
+
+   return createPortal(
+
       <ModalBackground>
          <ModalCard>
             <TitleCloseBtnBox>
@@ -71,6 +92,7 @@ function EditPost({ setOpenModal }) {
                   icon={faXmark}
                   onClick={() => {
                      setOpenModal(false);
+                     navigate('/');
                   }}
                   style={{
                      margin: 7,
@@ -123,6 +145,7 @@ function EditPost({ setOpenModal }) {
                <CancelBtn
                   onClick={() => {
                      setOpenModal(false);
+                     navigate('/');
                   }}
                   id="cancelBtn"
                >
@@ -130,18 +153,20 @@ function EditPost({ setOpenModal }) {
                </CancelBtn>
             </Footer>
          </ModalCard>
-      </ModalBackground>
+      </ModalBackground>,
+      document.getElementById('EditPost')
    );
 }
 const ModalBackground = styled.div`
-   position: absolute;
+   position: fixed;
    width: 100%;
    height: 100%;
    z-index: 100;
-   top: 0;
+   top: -${window.scrollY}px;
    left: 0;
    right: 0;
    bottom: 0;
+   overflow-y: hidden;
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -160,8 +185,9 @@ const ModalBackground = styled.div`
 const ModalCard = styled.div`
    max-width: 300px;
    position: relative;
-   top: 0;
-   right: 0;
+   top: 50%;
+   left: 0%;
+   transform: translateY(-50%);
    width: 95%;
    display: flex;
    flex-direction: column;
@@ -204,15 +230,15 @@ const Input = styled.input`
    max-width: 200px;
    line-height: 11px;
    background-color: transparent;
-   color: #282c34;
+   color: #282C34;
    border: none;
-   border-bottom: 1px solid #282c34;
+   border-bottom: 1px solid #282C34;
    &:hover,
    &:focus,
    &:active {
       cursor: pointer;
-      border-bottom: 1px solid #ea9cc3;
-      outline-color: #edb6d1;
+      border-bottom: 1px solid #EA9CC3;
+      outline-color: #EDB6D1;
    }
 `;
 const InputFile = styled.input`
@@ -220,16 +246,16 @@ const InputFile = styled.input`
    width: 100px;
    max-height: 40px;
    background-color: whitesmoke;
-   color: #282c34;
+   color: #282C34;
    border: none;
-   border-bottom: 1px solid #282c34;
+   border-bottom: 1px solid #282C34;
 `;
 const Label = styled.label`
    margin: auto 5px;
    padding: 2px 4px;
    color: #000;
-   background-color: #e0e0e0;
-   border: 1px solid #e0e0e0;
+   background-color: #E0E0E0;
+   border: 1px solid #E0E0E0;
    border-radius: 5px;
 `;
 const Preview = styled.div`
@@ -244,15 +270,15 @@ const Textarea = styled.textarea`
    overflow-x: hidden;
    overflow-y: auto;
    background-color: transparent;
-   border: solid 1px #282c34;
+   border: solid 1px #282C34;
    border-radius: 5px;
    resize: none;
    &:hover,
    &:focus,
    &:active {
       cursor: pointer;
-      border: 1px solid #ea9cc3;
-      outline-color: #edb6d1;
+      border: 1px solid #EA9CC3;
+      outline-color: #EDB6D1;
    }
 `;
 const Footer = styled.div`
@@ -276,15 +302,15 @@ const ContinueBtn = styled.button`
    margin: 10px 5px;
    padding: 6px 10px;
    color: #000;
-   background-color: #e0e0e0;
-   border: 1px solid #e0e0e0;
+   background-color: #E0E0E0;
+   border: 1px solid #E0E0E0;
    border-radius: 5px;
    &:hover,
    &:active,
    &:focus {
       cursor: pointer;
-      background-color: #ea9cc3;
-      border: 1px solid #ea9cc3;
+      background-color: #EA9CC3;
+      border: 1px solid #EA9CC3;
    }
 `;
 const CancelBtn = styled.button`
@@ -302,15 +328,16 @@ const CancelBtn = styled.button`
    margin: 10px 5px;
    padding: 6px 10px;
    color: #000;
-   background-color: #e0e0e0;
-   border: 1px solid #e0e0e0;
+   background-color: #E0E0E0;
+   border: 1px solid #E0E0E0;
    border-radius: 5px;
    &:hover,
    &:active,
    &:focus {
       cursor: pointer;
-      background-color: #ea9cc3;
-      border: 1px solid #ea9cc3;
+      background-color: #EA9CC3;
+      border: 1px solid #EA9CC3;
    }
 `;
+
 export default EditPost;
