@@ -7,6 +7,8 @@ import { post, loadPost } from './../redux/modules/post';
 import { createPortal } from 'react-dom';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
 function EditPost({ setOpenModal }) {
    const navigate = useNavigate();
    const title = React.useRef(null);
@@ -78,6 +80,9 @@ function EditPost({ setOpenModal }) {
             window.alert('게시물이 수정되지않았습니다.');
          });
    };
+
+  
+
    return createPortal(
       <ModalBackground>
          <ModalCard>
@@ -86,6 +91,7 @@ function EditPost({ setOpenModal }) {
                   icon={faXmark}
                   onClick={() => {
                      setOpenModal(false);
+                     navigate('/');
                   }}
                   style={{
                      margin: 7,
@@ -138,6 +144,7 @@ function EditPost({ setOpenModal }) {
                <CancelBtn
                   onClick={() => {
                      setOpenModal(false);
+                     navigate('/');
                   }}
                   id="cancelBtn"
                >

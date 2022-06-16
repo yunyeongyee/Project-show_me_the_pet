@@ -94,6 +94,7 @@ const PostList = () => {
       const id = postedList[index].boardId;
       setModalOpen(true);
       dispatch(loadboardID(id));
+      navigate(`/edit/${id}`);
       
    }
 
