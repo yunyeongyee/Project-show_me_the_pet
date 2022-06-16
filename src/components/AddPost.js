@@ -54,7 +54,7 @@ const AddPost = () => {
          navigate('/');
        })
        .catch(function (error) {
-        const msg = error.response.data.errorMessage;
+        const msg = error.response.data.msg;
         console.log(error);
           alert(msg);
        });
