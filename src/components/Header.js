@@ -21,7 +21,7 @@ const Header = (props) => {
    };
    const ClickLogOut = () => {
       localStorage.removeItem('login-token');
-      navigate('/');
+      window.location.replace('/');
    };
    const ClickSignUp = () => {
       navigate('/SignUp');
