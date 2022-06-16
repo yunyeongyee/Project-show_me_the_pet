@@ -9,7 +9,6 @@ import '../App.css';
 const Header = (props) => {
    const navigate = useNavigate();
    const token = localStorage.getItem("login-token")
-   console.log(token)
    // const getUserInfo =() =>{
    //     return () 
    // };

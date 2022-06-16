@@ -43,12 +43,12 @@ function EditPost({ setOpenModal }) {
             headers: { Authorization: 'Bearer ' + `${token}` },
          })
          .then((response) => {
-            console.log('response => ', response);
             const newTitle = response.data.detail.title;
             const newContent = response.data.detail.content;
             setGetTitle(newTitle);
             setGetContent(newContent);
-            console.log('response?', getTitle, getContent);
+
+           
          })
          .catch(function (error) {
             alert(error.response.data.msg);
@@ -56,7 +56,6 @@ function EditPost({ setOpenModal }) {
    };
    // PUT POSTED
    const putPostListAxios = (index) => {
-      console.log('listData?', listData);
       axios({
          method: 'put',
          url: 'http://15.164.164.17/api/boards/' + myBoardId,
@@ -70,11 +69,12 @@ function EditPost({ setOpenModal }) {
          },
       })
          .then((response) => {
+          console.log(response);
             if (response.data.msg === "본인만 수정 가능합니다.") {
-              alert("response.data.msg") 
+              alert(response.data.msg) 
             } else {
-              alert("response.data.msg") 
-              window.location.replace('/');
+              alert(response.data.msg) 
+               window.location.replace('/');
             }
          })
          .catch((err) => {
@@ -113,6 +113,7 @@ function EditPost({ setOpenModal }) {
                   onChange={(event) => {
                      setGetTitle(event.target.value);
                   }}
+                  maxlength="18"
                />
                <br />
                <SubTitle>Choose Image</SubTitle>
