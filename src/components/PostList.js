@@ -46,7 +46,7 @@ const PostList = () => {
 
 
    const myBoardId = useSelector((state) => state.user);
-   console.log("post list 컴포넌트의 myBoardId 콘솔 = > ", myBoardId)
+   
 
    // GET POSTED
    const getPostListAxios = () => {
@@ -82,19 +82,20 @@ const PostList = () => {
                }
             })
             .catch(function (error) {
-              console.log("error=> ", error)
-               console.log(error.response.data.msg);
+               alert(error.response.data.msg);
             });
       }
    };
    function ModalOpenFunc(index) {
+     
       const id = postedList[index].boardId;
-      setModalOpen(true);
+      
       dispatch(loadboardID(id));
      navigate(`/edit/${id}`);
-      
-
+     setModalOpen(true);
    }
+
+
    return (
       <>
          <Container>

@@ -40,7 +40,6 @@ h4 {
 }
 
 .HeaderTitle:hover,
-   :active,
    :focus {
     color: #EA9CC3;
     cursor: pointer;
@@ -49,4 +48,9 @@ h4 {
 .Footer{
   height: 50px;
   width: 100%;
+  color: #000;
+}
+
+.Footer:hover {
+  color:#EA9CC3;
 }

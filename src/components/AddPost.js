@@ -74,6 +74,7 @@ const AddPost = () => {
                      ref={title}
                      type="text"
                      placeholder="제목을 입력하세요."
+                     maxlength="18"
                   />
                   <br />
 
